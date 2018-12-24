@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <!-- TextView to show Title -->
+    <TextView
+        android:id="@+id/textView_AdapterViewListProfile_title"
+        style="@style/general_Top_MatchParent"
+        android:text="Title"
+        android:textStyle="bold" />
+
+
+    <LinearLayout
+        style="@style/general_Middle_MatchParent"
+        android:orientation="horizontal">
+
+        <!-- TextView to show income/year -->
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="income/year: " />
+
+        <!-- TextView to show income/year -->
+        <TextView
+            android:id="@+id/textView_AdapterViewListProfile_IncomeYear"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:text="income/year" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        style="@style/general_Middle_MatchParent"
+        android:orientation="horizontal">
+
+        <!-- TextView to show income/year -->
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="expense/year: " />
+
+        <!-- TextView to show expense/year -->
+        <TextView
+            android:id="@+id/textView_AdapterViewListProfile_ExpenseYear"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:text="expense/year" />
+    </LinearLayout>
+
+    <LinearLayout
+        style="@style/general_Middle_MatchParent"
+        android:orientation="horizontal">
+
+        <!-- TextView to show income/year -->
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="balance/year: " />
+
+        <!-- TextView to show balance/year -->
+        <TextView
+            android:id="@+id/textView_AdapterViewListProfile_BalanceYear"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:text="balance/year" />
+    </LinearLayout>
+</LinearLayout>
