@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/general_Middle_MatchParent"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginTop="8dp"
+    android:layout_marginBottom="8dp"
+    android:stretchColumns="0,1,2"
+    tools:context=".Activitys.OverviewActivity">
+
+    <!-- first row, month and year -->
+    <TableRow>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_column="1"
+            android:text="month" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_column="2"
+            android:text="year" />
+    </TableRow>
+
+    <!-- second row, income -->
+    <TableRow>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_column="0"
+            android:text="income" />
+    </TableRow>
+
+    <!-- third row, gross -->
+    <TableRow>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_column="0"
+            android:text="gross" />
+
+        <!-- gross/month -->
+        <TextView
+            android:id="@+id/textView_OverviewActivity_GrossMonth"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_column="1"
+            android:text="gross/month" />
+
+        <!-- gross/year -->
+        <TextView
+            android:id="@+id/textView_OverviewActivity_GrossYear"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_column="2"
+            android:text="gross/year" />
+    </TableRow>
+
+    <!-- forth row, net -->
+    <TableRow>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_column="0"
+            android:text="net" />
+
+        <!-- net/month -->
+        <TextView
+            android:id="@+id/textView_OverviewActivity_NetMonth"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_column="1"
+            android:text="net/month" />
+
+        <!-- net/year -->
+        <TextView
+            android:id="@+id/textView_OverviewActivity_NetYear"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_column="2"
+            android:text="net/year" />
+    </TableRow>
+
+    <!-- forth row, other -->
+    <TableRow>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_column="0"
+            android:text="other" />
+
+        <!-- otherIncome/month -->
+        <TextView
+            android:id="@+id/textView_OverviewActivity_OtherIncomeMonth"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_column="1"
+            android:text="otherIncome/month" />
+
+        <!-- otherIncome/year -->
+        <TextView
+            android:id="@+id/textView_OverviewActivity_OtherIncomeYear"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_column="2"
+            android:text="otherIncome/year" />
+    </TableRow>
+
+
+    <!-- fifth row, empty -->
+    <TableRow>
+
+        <TextView />
+    </TableRow>
+
+    <!-- sixth row, expenses -->
+    <TableRow>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_column="0"
+            android:text="expenses" />
+
+        <!-- expenses/month -->
+        <TextView
+            android:id="@+id/textView_OverviewActivity_ExpensesMonth"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_column="1"
+            android:text="expenses/month" />
+
+        <!-- expenses/year -->
+        <TextView
+            android:id="@+id/textView_OverviewActivity_ExpensesYear"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_column="2"
+            android:text="expenses/year" />
+    </TableRow>
+
+    <!-- seventh row, empty -->
+    <TableRow>
+
+        <TextView />
+    </TableRow>
+
+    <!-- eight row, balance -->
+    <TableRow>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_column="0"
+            android:text="balance" />
+
+        <!-- balance/month -->
+        <TextView
+            android:id="@+id/textView_OverviewActivity_BalanceMonth"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_column="1"
+            android:text="balance/month" />
+
+        <!-- balance/year -->
+        <TextView
+            android:id="@+id/textView_OverviewActivity_BalanceYear"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_column="2"
+            android:text="balance/year" />
+    </TableRow>
+</TableLayout>

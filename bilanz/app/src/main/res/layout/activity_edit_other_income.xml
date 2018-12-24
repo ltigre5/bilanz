@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".Activitys.EditOtherIncomeActivity">
+
+
+    <!-- expense name -->
+    <EditText
+        android:id="@+id/editText_EditOtherIncomeActivity_Title"
+        style="@style/general_Top_MatchParent"
+        android:lines="1"
+        android:text="Title" />
+
+    <!-- expense value -->
+    <LinearLayout style="@style/general_Middle_MatchParent">
+
+        <!-- expense value -->
+        <EditText
+            android:id="@+id/editText_EditOtherIncomeActivity_Value"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:inputType="numberDecimal"
+            android:text="value" />
+
+        <TextView
+            android:id="@+id/textView_EditOtherIncomeActivity_Currency"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="chf" />
+    </LinearLayout>
+
+    <!-- repeated every -->
+    <LinearLayout style="@style/general_Middle_MatchParent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="every: " />
+
+        <EditText
+            android:id="@+id/editText_EditOtherIncomeActivity_RepeatedBy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1" />
+
+        <Spinner
+            android:id="@+id/spinner_EditOtherIncomeActivity_Every"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:entries="@array/every_arrays">
+
+        </Spinner>
+
+    </LinearLayout>
+
+    <!-- show values -->
+    <TableLayout
+        style="@style/general_Middle_MatchParent"
+        android:layout_weight="1"
+        android:stretchColumns="0,1,2">
+
+        <!-- expense/month -->
+        <TableRow>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_column="0"
+                android:text="income/month" />
+
+            <TextView
+                android:id="@+id/textView_EditOtherIncomeActivity_ExpenseMonth"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_column="1"
+                android:text="31" />
+
+            <TextView android:layout_column="2" />
+        </TableRow>
+
+        <!-- expense/year -->
+        <TableRow>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_column="0"
+                android:text="income/year" />
+
+            <TextView
+                android:id="@+id/textView_EditOtherIncomeActivity_ExpenseYear"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_column="1"
+                android:text="356" />
+
+            <TextView android:layout_column="2" />
+        </TableRow>
+    </TableLayout>
+
+    <!-- bottom layout -->
+    <RelativeLayout style="@style/general_Bottom_MatchParent">
+
+        <!-- button delete -->
+        <Button
+            android:id="@+id/button_EditOtherIncomeActivity_DeleteExpense"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:onClick="onClickDeleteIncome"
+            android:text="delete" />
+
+        <!-- button save -->
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:onClick="onClickSaveIncome"
+            android:text="save" />
+    </RelativeLayout>
+</LinearLayout>

@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">Bilanz Tracker</string>
+
+    <!-- Every expense spinner -->
+    <string name="every_year">Years</string>
+    <string name="every_month">Months</string>
+    <string name="every_week">Weeks</string>
+    <string name="every_Day">Days</string>
+
+    <string-array name="every_arrays">
+        <item>@string/every_year</item>
+        <item>@string/every_month</item>
+        <item>@string/every_week</item>
+        <item>@string/every_Day</item>
+    </string-array>
+
+
+</resources>
