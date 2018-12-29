@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activitys.IncomeActivity"
+    android:orientation="vertical">
+
+    <include
+        android:id="@+id/toolbar_MainActivity"
+        layout="@layout/toolbar_main_activity">
+    </include>
+
+    <!-- deductions list -->
+    <ListView
+        android:id="@+id/listView_IncomeActivity"
+        style="@style/general_Middle_MatchParent"
+        android:layout_weight="1" />
+
+    <!-- salary net -->
+    <LinearLayout style="@style/general_Bottom_MatchParent">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_gravity="bottom"
+            android:layout_weight="1">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:text="total gross/year: " />
+
+                <TextView
+                    android:id="@+id/textView_IncomeActivity_TotalIncomeGrossYear"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:layout_weight="1"
+                    android:text="90'000" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:text="total net/year: " />
+
+                <TextView
+                    android:id="@+id/textView_IncomeActivity_TotalIncomeNetYear"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:layout_weight="1"
+                    android:text="90'000" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <Button
+            style="@style/button_WrapContent"
+            android:text="add new income"
+            android:onClick="onClickAddNewIncome" />
+    </LinearLayout>
+</LinearLayout>

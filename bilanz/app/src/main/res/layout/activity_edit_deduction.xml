@@ -7,12 +7,19 @@
     android:orientation="vertical"
     tools:context=".Activitys.EditDeductionActivity">
 
+    <include
+        android:id="@+id/toolbar_MainActivity"
+        layout="@layout/toolbar_main_activity">
+    </include>
+
     <!-- deduction name -->
     <EditText
         android:id="@+id/editText_EditDeductionActivity_Title"
         style="@style/general_Top_MatchParent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:lines="1"
-        android:text="Title" />
+        android:hint="Title"/>
 
     <LinearLayout
         style="@style/general_Middle_MatchParent">
@@ -24,7 +31,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:inputType="numberDecimal"
-            android:text="percentage"
+            android:hint="Percentage"
             android:layout_weight="1"/>
 
         <TextView
@@ -35,33 +42,26 @@
 
     </LinearLayout>
 
-
-    <!-- empty layout -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1">
-
-    </LinearLayout>
-
     <!-- bottom layout -->
     <RelativeLayout
-        style="@style/general_Bottom_MatchParent">
+        style="@style/general_Bottom_MatchParent"
+        android:layout_weight="1">
 
         <!-- button delete -->
         <Button
             android:id="@+id/button_EditDeductionActivity_Delete"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@style/button_WrapContent"
             android:layout_alignParentStart="true"
+            android:layout_alignParentBottom="true"
             android:text="delete"
             android:onClick="onClickDeleteDeduction"/>
 
         <!-- button save -->
         <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@style/button_WrapContent"
             android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+
             android:text="save"
             android:onClick="onClickSaveDeduction"/>
 

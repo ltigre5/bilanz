@@ -16,20 +16,28 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Activitys.OverviewActivity"
-            android:label="Overview"/>
-        <activity android:name=".Activitys.SalaryActivity"
-            android:label="Salary"/>
-        <activity android:name=".Activitys.ExpensesActivity"
-            android:label="Expenses"/>
-        <activity android:name=".Activitys.EditDeductionActivity"
-            android:label="Add/Edit Deduction"/>
-        <activity android:name=".Activitys.EditExpenseActivity"
-            android:label="Add/Edit Expense"/>
-        <activity android:name=".Activitys.OtherIncomeActivity"
-            android:label="Other Income"/>
-        <activity android:name=".Activitys.EditOtherIncomeActivity"
-            android:label="Add/Edit Income"></activity>
+        <activity
+            android:name=".Activitys.OverviewActivity"
+            android:label="Overview" />
+        <activity
+            android:name=".Activitys.EditIncomeActivity"
+            android:label="Edit Income" />
+        <activity
+            android:name=".Activitys.ExpenseActivity"
+            android:label="Expenses" />
+        <activity
+            android:name=".Activitys.EditDeductionActivity"
+            android:label="Add/Edit Deduction" />
+        <activity
+            android:name=".Activitys.EditExpenseActivity"
+            android:label="Add/Edit Expense" />
+        <activity
+            android:name=".Activitys.IncomeActivity"
+            android:label="Income" />
+        <activity android:name=".Activitys.InfoActivity"
+            android:label="Info"/>
+        <activity android:name=".Activitys.CurrencyActivity"
+            android:label="Change Currency"></activity>
     </application>
 
 </manifest>

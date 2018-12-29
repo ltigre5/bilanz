@@ -1,7 +1,7 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
@@ -44,6 +44,70 @@
 
     <style name="general_Bottom_MatchParent" parent="general_Middle_MatchParent">
         <item name="android:layout_marginBottom">8dp</item>
+    </style>
+
+    <!-- general Styles for Margin-->
+    <style name="general_Margin">
+        <item name="android:layout_marginStart">6dp</item>
+        <item name="android:layout_marginEnd">6dp</item>
+        <item name="android:layout_marginBottom">6dp</item>
+        <item name="android:layout_marginTop">6dp</item>
+    </style>
+
+    <style name="general_Middle_Margin">
+        <item name="android:layout_marginStart">8dp</item>
+        <item name="android:layout_marginEnd">8dp</item>
+    </style>
+
+    <style name="general_Margin_0">
+        <item name="android:layout_marginTop">0dp</item>
+        <item name="android:layout_marginBottom">0dp</item>
+        <item name="android:layout_marginStart">0dp</item>
+        <item name="android:layout_marginEnd">0dp</item>
+    </style>
+
+    <style name="button_Color_Chooser">
+        <item name="android:layout_width">25dp</item>
+        <item name="android:layout_height">25dp</item>
+        <item name="android:layout_gravity">bottom</item>
+        <item name="android:layout_marginEnd">8dp</item>
+        <item name="android:padding">20dp</item>
+    </style>
+
+    <!-- general Styles for Buttons-->
+    <style name="button_WrapContent" parent="general_WrapContent">
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:background">@drawable/custom_button</item>
+    </style>
+
+    <style name="button_Middle_MatchParent" parent="general_Middle_MatchParent">
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:background">@drawable/custom_button</item>
+    </style>
+
+    <style name="button_Bottom_MatchParent" parent="general_Bottom_MatchParent">
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:background">@drawable/custom_button</item>
+    </style>
+
+    <!-- Title style-->
+    <style name="editText_Title">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:hint">title</item>
+        <item name="android:inputType">textMultiLine</item>
+        <item name="android:maxLines">2</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:maxLength">50</item>
+    </style>
+
+    <!-- Values style-->
+    <style name="editText_Value">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:hint">value</item>
+        <item name="android:inputType">numberDecimal</item>
     </style>
 
 </resources>

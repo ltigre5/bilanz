@@ -2,36 +2,36 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    style="@style/general_Middle_MatchParent"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginTop="8dp"
-    android:layout_marginBottom="8dp"
     android:orientation="vertical"
     tools:context=".Activitys.OverviewActivity">
 
+    <include
+        android:id="@+id/toolbar_MainActivity"
+        layout="@layout/toolbar_main_activity">
+    </include>
+
     <!-- profile title -->
     <LinearLayout
-        style="@style/general_MatchParent"
+        style="@style/general_Top_MatchParent"
         android:orientation="horizontal">
 
         <EditText
             android:id="@+id/editText_OverviewActivity_Title"
-            android:layout_width="0dp"
+            style="@style/editText_Title"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Title"
-            android:focusable="false"/>
+            android:text="Title" />
 
         <Button
-            style="@style/general_WrapContent"
+            style="@style/button_WrapContent"
             android:onClick="onClickSaveProfileTitle"
             android:text="save" />
     </LinearLayout>
 
     <!-- profile title -->
     <LinearLayout
-        style="@style/general_MatchParent"
+        style="@style/general_Middle_MatchParent"
         android:orientation="horizontal">
 
         <TextView
@@ -47,10 +47,8 @@
             android:textStyle="bold"/>
     </LinearLayout>
 
-
     <TableLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        style="@style/general_Middle_MatchParent"
         android:stretchColumns="0,1,2">
 
         <!-- first row, empty -->
@@ -136,33 +134,6 @@
                 android:layout_column="2"
                 android:text="net/year" />
         </TableRow>
-
-        <!-- forth row, other -->
-        <TableRow>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_column="0"
-                android:text="other" />
-
-            <!-- otherIncome/month -->
-            <TextView
-                android:id="@+id/textView_OverviewActivity_OtherIncomeMonth"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_column="1"
-                android:text="otherIncome/month" />
-
-            <!-- otherIncome/year -->
-            <TextView
-                android:id="@+id/textView_OverviewActivity_OtherIncomeYear"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_column="2"
-                android:text="otherIncome/year" />
-        </TableRow>
-
 
         <!-- fifth row, empty -->
         <TableRow>

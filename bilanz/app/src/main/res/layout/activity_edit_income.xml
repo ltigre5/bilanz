@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".Activitys.EditIncomeActivity">
+
+    <include
+        android:id="@+id/toolbar_MainActivity"
+        layout="@layout/toolbar_main_activity"></include>
+
+    <!-- expense name -->
+    <EditText
+        android:id="@+id/editText_EditIncomeActivity_Title"
+        style="@style/general_Top_MatchParent"
+        android:hint="Title"
+        android:lines="1" />
+
+    <!-- salary gross -->
+    <LinearLayout style="@style/general_Top_MatchParent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="salary gross: " />
+
+        <EditText
+            android:id="@+id/editText_EditIncomeActivity_IncomeGross"
+            style="@style/editText_Value" />
+
+        <TextView
+            android:id="@+id/textView_EditIncomeActivity_Currency"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="chf" />
+    </LinearLayout>
+
+    <!-- repeated every -->
+    <LinearLayout style="@style/general_Middle_MatchParent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="every: " />
+
+        <EditText
+            android:id="@+id/editText_EditIncomeActivity_RepeatedBy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1" />
+
+        <Spinner
+            android:id="@+id/spinner_EditIncomeActivity_Every"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:entries="@array/every_arrays">
+
+        </Spinner>
+
+        <Button
+            style="@style/button_WrapContent"
+            android:onClick="onClickSaveIncomeGrossYear"
+            android:text="save" />
+
+    </LinearLayout>
+
+
+    <!-- salary gross saved -->
+    <LinearLayout style="@style/general_Middle_MatchParent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="saved income gross/year: " />
+
+        <TextView
+            android:id="@+id/textView_EditIncomeActivity_IncomeGrossSaved"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="100'000" />
+    </LinearLayout>
+
+    <!-- salary gross saved -->
+    <LinearLayout style="@style/general_Middle_MatchParent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:text="income net/year: " />
+
+        <TextView
+            android:id="@+id/textView_EditIncomeActivity_IncomeNet"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:layout_weight="1"
+            android:text="90'000" />
+    </LinearLayout>
+
+    <!-- deductions list -->
+    <ListView
+        android:id="@+id/listView_EditIncomeActivity"
+        style="@style/general_Middle_MatchParent"
+        android:layout_weight="1" />
+
+    <!-- salary net -->
+    <RelativeLayout style="@style/general_Bottom_MatchParent">
+
+        <Button
+            style="@style/button_WrapContent"
+            android:onClick="onClickADelete"
+            android:text="Delete"
+            android:layout_alignParentStart="true"/>
+
+        <Button
+            style="@style/button_WrapContent"
+            android:onClick="onClickAddNewDeduction"
+            android:text="add new deduction"
+            android:layout_alignParentEnd="true"/>
+    </RelativeLayout>
+</LinearLayout>

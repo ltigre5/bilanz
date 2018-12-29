@@ -4,13 +4,19 @@ import android.database.Cursor;
 
 import com.example.leand.bilanztracker.Activitys.MainActivity;
 
+import java.text.DecimalFormat;
+
 /**
  * This class help's to get the right value out of the Database, with a cursor
  */
 
 public class GetColumnHelper {
     private Cursor cursor;
-    private long long_ProfileId;
+
+    private String string_Currency = "";
+
+    public DecimalFormat currencyFormat = new DecimalFormat("#,###,###,###,###,###,##0.00");
+
 
     // Declaration
     //----------------------------------------------------------------------------------------------
@@ -23,7 +29,16 @@ public class GetColumnHelper {
      */
     public GetColumnHelper(Cursor cursor) {
         this.cursor = cursor;
-        long_ProfileId = MainActivity.long_ProfileId;
+        getCurrency();
+
+    }
+
+    /**
+     * Constructor empty
+     */
+    public GetColumnHelper() {
+        getCurrency();
+
     }
 
     // Constructor
@@ -37,7 +52,9 @@ public class GetColumnHelper {
      */
     public void setCursor(Cursor cursor) {
         this.cursor = cursor;
+        getCurrency();
     }
+
 
     // setter
     //----------------------------------------------------------------------------------------------
@@ -52,33 +69,6 @@ public class GetColumnHelper {
         return cursor.getString(cursor.getColumnIndexOrThrow(DBAdapter.KEY_PROFILE));
     }
 
-    /**
-     * get the total income/year of the profile
-     *
-     * @return total income/year in double
-     */
-    public double getProfileTotalIncomeYear() {
-        return cursor.getDouble(cursor.getColumnIndexOrThrow(DBAdapter.KEY_TOTAL_INCOME_YEAR));
-    }
-
-    /**
-     * get the total expense/year of the profile
-     *
-     * @return total expense/year in double
-     */
-    public double getProfileTotalExpenseYear() {
-        return cursor.getDouble(cursor.getColumnIndexOrThrow(DBAdapter.KEY_TOTAL_EXPENSE_YEAR));
-    }
-
-    /**
-     * get balance/year of the profile
-     *
-     * @return balance/year in double
-     */
-    public double getProfileBalanceYear() {
-        return cursor.getDouble(cursor.getColumnIndexOrThrow(DBAdapter.KEY_BALANCE_YEAR));
-    }
-
     // getter table profile
     //----------------------------------------------------------------------------------------------
     // getter table currency
@@ -91,9 +81,12 @@ public class GetColumnHelper {
     public String getCurrency() {
         if (MainActivity.myDbMain.checkCurrencyExists()) {
             Cursor cursor = MainActivity.myDbMain.getAllCurrency();
-            return cursor.getString(cursor.getColumnIndexOrThrow(DBAdapter.KEY_CURRENCY));
+            String currency = cursor.getString(cursor.getColumnIndexOrThrow(DBAdapter.KEY_CURRENCY));
+            string_Currency = " " + currency;
+            return currency;
 
         } else {
+            string_Currency = "";
             return "";
         }
     }
@@ -105,73 +98,97 @@ public class GetColumnHelper {
     /**
      * get total income/year of the profile
      *
-     * @return total income/year in double
+     * @return total income/year in Double
      */
-    public Double getTotalIncomeYear() {
+    public Double getTotalIncomeGrossYearDouble() {
         if (MainActivity.myDbMain.checkIncomeExists()) {
-            double totalIncome = 0.0;
+            double totalIncomeGross = 0.0;
 
-            totalIncome += getTotalOtherIncomeYear();
-
-            totalIncome += getSalaryNetYear();
-
-            MainActivity.myDbMain.updateRowProfileTotalIncomeYear(totalIncome);
-            return totalIncome;
-
-        } else {
-            return 0.0;
-        }
-    }
-
-    /**
-     * get total otherIncome/year of the profile
-     *
-     * @return total otherIncome/year in double
-     */
-    public Double getTotalOtherIncomeYear() {
-        if (MainActivity.myDbMain.checkOtherIncomeExists()) {
-            double totalOtherIncome = 0.0;
-            Cursor cursor_OtherIncome = MainActivity.myDbMain.getAllRowsOtherIncome();
+            Cursor cursor=MainActivity.myDbMain.getAllRowsIncome();
 
             do {
-                totalOtherIncome += cursor_OtherIncome.getDouble(cursor_OtherIncome.getColumnIndexOrThrow(DBAdapter.KEY_INCOME_YEAR));
-            } while (cursor_OtherIncome.moveToNext());
+                totalIncomeGross+=cursor.getInt(cursor.getColumnIndexOrThrow(DBAdapter.KEY_INCOME_YEAR_GROSS));
+            } while (cursor.moveToNext());
 
-            return totalOtherIncome;
+            cursor.close();
+
+            return totalIncomeGross;
 
         } else {
-            return 0.0;
+            return 0.00;
         }
     }
 
     /**
-     * get salaryNet/year of the profile
+     * get total income/year of the profile
      *
-     * @return total salaryNet/year in double
+     * @return total income/year in Double
      */
-    public Double getSalaryNetYear() {
-        double salaryGross;
-        double salaryNet;
-        double totalDeduction = getTotalDeduction();
+    public Double getTotalIncomeNetYearDouble() {
+        if (MainActivity.myDbMain.checkIncomeExists()) {
+            double totalIncomeNet = 0.0;
 
-        salaryGross = getSalaryGrossYear();
-        salaryNet = salaryGross - (salaryGross * (totalDeduction / 100));
-        return salaryNet;
+            Cursor cursor=MainActivity.myDbMain.getAllRowsIncome();
+
+            do {
+                totalIncomeNet+=cursor.getDouble(cursor.getColumnIndexOrThrow(DBAdapter.KEY_INCOME_YEAR_NET));
+            } while (cursor.moveToNext());
+
+            cursor.close();
+
+            return totalIncomeNet;
+
+        } else {
+            return 0.00;
+        }
+    }
+
+
+    //----------------------------------------------------------------------------------------------
+
+    /**
+     * get the title of the income
+     *
+     * @return title of the income in string
+     */
+    public String getIncomeTitle() {
+        Cursor cursor=MainActivity.myDbMain.getRowIncome();
+        String incomeTitle=cursor.getString(cursor.getColumnIndexOrThrow(DBAdapter.KEY_INCOME_TYPE));
+        cursor.close();
+        return incomeTitle;
     }
 
     /**
-     * get salaryGross/year of the profile
+     * get incomeGross/year of the profile
      *
-     * @return total salaryGross/year in double
+     * @return total incomeGross/year in Double
      */
-    public Double getSalaryGrossYear() {
-        if (MainActivity.myDbMain.checkSalaryExists()) {
-            Cursor cursor_Salary = MainActivity.myDbMain.getSalary();
-
-            return cursor_Salary.getDouble(cursor_Salary.getColumnIndexOrThrow(DBAdapter.KEY_INCOME_YEAR));
+    public Double getIncomeGrossYearDouble() {
+        if (MainActivity.myDbMain.checkIncomeExists()) {
+            Cursor cursor = MainActivity.myDbMain.getRowIncome();
+            Double incomeGross=cursor.getDouble(cursor.getColumnIndexOrThrow(DBAdapter.KEY_INCOME_YEAR_GROSS));
+            cursor.close();
+            return incomeGross;
 
         } else {
-            return 0.0;
+            return 0.00;
+        }
+    }
+
+    /**
+     * get incomeGross/year of the profile
+     *
+     * @return total incomeGross/year in Double
+     */
+    public Double getIncomeNetYearDouble() {
+        if (MainActivity.myDbMain.checkIncomeExists()) {
+            Cursor cursor = MainActivity.myDbMain.getRowIncome();
+            Double incomeNet=cursor.getDouble(cursor.getColumnIndexOrThrow(DBAdapter.KEY_INCOME_YEAR_NET));
+            cursor.close();
+            return incomeNet;
+
+        } else {
+            return 0.00;
         }
     }
 
@@ -180,33 +197,86 @@ public class GetColumnHelper {
     // getter table expense
 
     /**
+     * get the title of the expense
+     *
+     * @return title of expense in string
+     */
+    public String getExpenseTitle() {
+        return cursor.getString(cursor.getColumnIndexOrThrow(DBAdapter.KEY_EXPENSE_TYPE));
+    }
+
+    /**
+     * get the expense
+     *
+     * @return expense in Double
+     */
+    public Double getExpenseYearDouble() {
+        return cursor.getDouble(cursor.getColumnIndexOrThrow(DBAdapter.KEY_EXPENSE_YEAR));
+    }
+
+    /**
      * get total expense/year of the profile
      *
-     * @return total expense/year in double
+     * @return total expense/year in Double
      */
-    public Double getTotalExpenseYear() {
-        if (MainActivity.myDbMain.checkIncomeExists()) {
-            double totalIncome = 0.0;
-            Cursor cursor_OtherIncome = MainActivity.myDbMain.getAllRowsOtherIncome();
+    public Double getTotalExpenseYearDouble() {
+        if (MainActivity.myDbMain.checkExpenseExists()) {
+            double totalExpenses = 0.0;
+            Cursor cursor = MainActivity.myDbMain.getAllRowsExpense();
 
-            if (MainActivity.myDbMain.checkOtherIncomeExists()) {
-                do {
-                    totalIncome += cursor_OtherIncome.getDouble(cursor_OtherIncome.getColumnIndexOrThrow(DBAdapter.KEY_INCOME_YEAR));
-                } while (cursor_OtherIncome.moveToNext());
-            }
+            do {
+                totalExpenses += cursor.getDouble(cursor.getColumnIndexOrThrow(DBAdapter.KEY_EXPENSE_YEAR));
+            } while (cursor.moveToNext());
 
+            cursor.close();
 
-            MainActivity.myDbMain.updateRowProfileTotalIncomeYear(totalIncome);
-            return totalIncome;
+            return totalExpenses;
 
         } else {
-            return 0.0;
+            return 0.00;
         }
     }
+
 
     // getter table expense
     //----------------------------------------------------------------------------------------------
     // getter table deduction
+
+    /**
+     * get the title of the deduction
+     *
+     * @return title of deduction in string
+     */
+    public String getDeductionTitle() {
+        return cursor.getString(cursor.getColumnIndexOrThrow(DBAdapter.KEY_DEDUCTION_TYPE));
+    }
+
+    /**
+     * get the percentage of the deduction
+     *
+     * @return percentage of deduction in Double
+     */
+    public Double getDeductionPercentageDouble() {
+        return cursor.getDouble(cursor.getColumnIndexOrThrow(DBAdapter.KEY_PERCENTAGE));
+    }
+
+    /**
+     * get the percentage of the deduction
+     *
+     * @return percentage of deduction in String
+     */
+    public String getDeductionPercentageString() {
+        return getDeductionPercentageDouble().toString();
+    }
+
+    /**
+     * get the percentage of the deduction
+     *
+     * @return percentage of deduction in String with %
+     */
+    public String getDeductionPercentageStringPercent() {
+        return getDeductionPercentageDouble() + "%";
+    }
 
     /**
      * get total deduction of the profile
@@ -225,7 +295,7 @@ public class GetColumnHelper {
             return totalDeduction;
 
         } else {
-            return 0.0;
+            return 0.00;
         }
     }
 
@@ -233,12 +303,61 @@ public class GetColumnHelper {
     //----------------------------------------------------------------------------------------------
     // getter general
 
-    public Double getBalanceYear(){
-        return getTotalIncomeYear()-getTotalExpenseYear();
+    /**
+     * get total balance/year of the profile
+     *
+     * @return total balance/year in Double
+     */
+    public Double getBalanceYearDouble() {
+        return getTotalIncomeGrossYearDouble() - getTotalExpenseYearDouble();
+    }
+
+
+    /**
+     * get the id
+     *
+     * @return id in long
+     */
+    public long getId() {
+        return cursor.getLong(cursor.getColumnIndexOrThrow(DBAdapter.KEY_ID));
     }
 
 
     // getter general
+    //----------------------------------------------------------------------------------------------
+    // format
+
+    /**
+     * get the currency format in string out of a double value exp: 0.00, 12.43, 0.43
+     *
+     * @param value the value to format
+     * @return currency format
+     */
+    public String getCurrencyFormat(Double value) {
+        return currencyFormat.format(value);
+    }
+
+    /**
+     * get the currency format in string with the currency out of a double value exp: 0.00 CHF, 12.43 CHF, 0.43 CHF
+     *
+     * @param value the value to format
+     * @return currency format
+     */
+    public String getCurrencyFormatWithCurrency(Double value) {
+        return currencyFormat.format(value) + string_Currency;
+    }
+
+    /**
+     * get the Double value per month from a Double value per year
+     *
+     * @param value the Double value to format
+     * @return the Double value per month
+     */
+    public Double getMonthValueDouble(Double value) {
+        return value.doubleValue() / 12.0;
+    }
+
+    // format
     //----------------------------------------------------------------------------------------------
     // end
 }

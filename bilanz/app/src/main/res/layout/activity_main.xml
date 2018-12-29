@@ -7,6 +7,12 @@
     android:orientation="vertical"
     tools:context=".Activitys.MainActivity">
 
+    <include
+        android:id="@+id/toolbar_MainActivity"
+        layout="@layout/toolbar_main_activity">
+
+    </include>
+
     <!-- title profiles -->
     <TextView
         style="@style/general_Top_MatchParent"
@@ -20,7 +26,7 @@
 
     <!-- add new profile button -->
     <Button
-        style="@style/general_Bottom_MatchParent"
+        style="@style/button_Bottom_MatchParent"
         android:text="Add new Profile"
         android:onClick="onClickAddNewProfile"/>
 

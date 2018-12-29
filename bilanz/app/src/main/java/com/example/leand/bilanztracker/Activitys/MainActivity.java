@@ -6,22 +6,32 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.BaseAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.example.leand.bilanztracker.DatabaseHelper.DBAdapter;
+import com.example.leand.bilanztracker.DatabaseHelper.GetColumnHelper;
 import com.example.leand.bilanztracker.ListViewHelper.ListViewAdapter;
 import com.example.leand.bilanztracker.R;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity {
     public static DBAdapter myDbMain;
     public static long long_ProfileId;
     public static Cursor cursor_Profile;
 
     private ListView listView_MainActivity;
     private ListViewAdapter listViewAdapter;
+    private GetColumnHelper getColumnHelper;
+    private Toolbar toolbar;
 
+    public static String string_actualProfile;
 
     // Declaration
     //----------------------------------------------------------------------------------------------
@@ -32,15 +42,28 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //Set Toolbar
+        toolbar = findViewById(R.id.toolbar_MainActivity);
+        setSupportActionBar(toolbar);
+
+        //open Database
         openDB();
 
+        getColumnHelper = new GetColumnHelper();
+        if (myDbMain.checkProfileExists()) {
+            Cursor cursor = myDbMain.getAllRowsProfile();
+            getColumnHelper.setCursor(cursor);
+            long_ProfileId = getColumnHelper.getId();
+        }
+
+        //definition of Items in Activity
         listView_MainActivity = findViewById(R.id.listView_MainActivity);
 
-        listViewAdapter= new ListViewAdapter(this);
+        listViewAdapter = new ListViewAdapter(this);
 
         createProfileListView();
 
-
+        displayItemsOnActivity();
     }
 
     // OnCreate
@@ -56,9 +79,7 @@ public class MainActivity extends AppCompatActivity {
 
                         //Yes button clicked, add new profile in database
                         long_ProfileId = MainActivity.myDbMain.insertRowProfile();
-
-                        Intent intent = new Intent(MainActivity.this, OverviewActivity.class);
-                        startActivity(intent);
+                        displayItemsOnActivity();
 
                         break;
                     case DialogInterface.BUTTON_NEGATIVE:
@@ -115,10 +136,8 @@ public class MainActivity extends AppCompatActivity {
                 //get ID of selected Item from Database
                 cursor_Profile = (Cursor) parent.getItemAtPosition(position);
                 long_ProfileId = cursor_Profile.getLong(cursor_Profile.getColumnIndexOrThrow(DBAdapter.KEY_ID));
+                displayItemsOnActivity();
 
-                //Open EditItemActivity and send ID
-                Intent intent = new Intent(MainActivity.this, OverviewActivity.class);
-                startActivity(intent);
 
             }
         });
@@ -141,9 +160,22 @@ public class MainActivity extends AppCompatActivity {
     //show Values on Activity
     public void displayItemsOnActivity() {
         listView_MainActivity.setAdapter(listViewAdapter.getProfileListViewAdapter());
+
+        getColumnHelper.setCursor(myDbMain.getRowProfile());
+        if (myDbMain.checkProfileExists()) {
+            string_actualProfile = "Actual Profile: " + getColumnHelper.getProfileTitle();
+        } else {
+            string_actualProfile = "";
+        }
+        toolbar.setSubtitle(string_actualProfile);
     }
 
     // Displaying Values
-    //----------------------------------------------------------------------------------------------
+    //----------------------------------------------------------------------------------------------------------------------------------------------
+    // Menu
+
+
+    // Menu
+    //----------------------------------------------------------------------------------------------------------------------------------------------
     // End
 }
