@@ -10,6 +10,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.leand.bilanztracker.DatabaseHelper.DBAdapter;
+import com.example.leand.bilanztracker.DatabaseHelper.GeneralFormatter;
 import com.example.leand.bilanztracker.DatabaseHelper.GetColumnHelper;
 import com.example.leand.bilanztracker.ListViewHelper.ListViewAdapter;
 import com.example.leand.bilanztracker.R;
@@ -22,6 +23,7 @@ public class ExpenseActivity extends BaseActivity {
 
     private Toolbar toolbar;
     private GetColumnHelper getColumnHelper;
+    private GeneralFormatter generalFormatter;
 
     public static long long_ExpenseId;
     public static boolean boolean_NewExpense;
@@ -46,6 +48,7 @@ public class ExpenseActivity extends BaseActivity {
 
         listViewAdapter = new ListViewAdapter(this);
         getColumnHelper = new GetColumnHelper();
+        generalFormatter = new GeneralFormatter();
 
         createExpenseListView();
 
@@ -81,7 +84,7 @@ public class ExpenseActivity extends BaseActivity {
                 long_ExpenseId = cursor.getLong(cursor.getColumnIndexOrThrow(DBAdapter.KEY_ID));
                 boolean_NewExpense = false;
 
-                Intent intent = new Intent(getApplicationContext(), EditIncomeActivity.class);
+                Intent intent = new Intent(getApplicationContext(), EditExpenseActivity.class);
                 startActivity(intent);
             }
         });
@@ -98,14 +101,11 @@ public class ExpenseActivity extends BaseActivity {
 
     //show Values on Activity
     public void displayItemsOnActivity() {
-        toolbar.setSubtitle(MainActivity.string_actualProfile);
+        toolbar.setSubtitle("Balance/month: "+ generalFormatter.getCurrencyFormatMonth(getColumnHelper.getBalanceYearDouble()));
 
         listView_ExpenseActivity.setAdapter(listViewAdapter.getExpenseListViewAdapter());
-        textView_ExpenseActivity_TotalExpenseYear.setText(getColumnHelper.getCurrencyFormatWithCurrency(
-                getColumnHelper.getTotalExpenseYearDouble()));
-
-        textView_ExpenseActivity_TotalExpenseMonth.setText(getColumnHelper.getCurrencyFormatWithCurrency(
-                getColumnHelper.getMonthValueDouble(getColumnHelper.getTotalExpenseYearDouble())));
+        textView_ExpenseActivity_TotalExpenseYear.setText(generalFormatter.getCurrencyFormat(getColumnHelper.getTotalExpenseYearDouble()));
+        textView_ExpenseActivity_TotalExpenseMonth.setText(generalFormatter.getCurrencyFormatMonth(getColumnHelper.getTotalExpenseYearDouble()));
 
     }
 

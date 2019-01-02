@@ -9,17 +9,20 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.leand.bilanztracker.Activitys.IncomeActivity;
+import com.example.leand.bilanztracker.DatabaseHelper.GeneralFormatter;
 import com.example.leand.bilanztracker.DatabaseHelper.GetColumnHelper;
 import com.example.leand.bilanztracker.R;
 
 public class IncomeCursorAdapter extends CursorAdapter {
     private LayoutInflater layoutInflater;
     private GetColumnHelper getColumnHelper;
+    private GeneralFormatter generalFormatter;
 
     public IncomeCursorAdapter(Context context, Cursor c, int flags) {
         super(context, c, flags);
         layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         getColumnHelper = new GetColumnHelper(c);
+        generalFormatter=new GeneralFormatter();
     }
 
     @Override
@@ -36,7 +39,7 @@ public class IncomeCursorAdapter extends CursorAdapter {
         TextView textView_AdapterViewListIncome_NetValue = view.findViewById(R.id.textView_AdapterViewListIncome_NetValue);
 
         textView_AdapterViewListIncome_title.setText(getColumnHelper.getIncomeTitle());
-        textView_AdapterViewListIncome_NetValue.setText(getColumnHelper.getCurrencyFormatWithCurrency(getColumnHelper.getIncomeNetYearDouble()));
-        textView_AdapterViewListIncome_GrossValue.setText(getColumnHelper.getCurrencyFormatWithCurrency(getColumnHelper.getIncomeGrossYearDouble()));
+        textView_AdapterViewListIncome_NetValue.setText(generalFormatter.getCurrencyFormat(getColumnHelper.getIncomeNetYearDouble()));
+        textView_AdapterViewListIncome_GrossValue.setText(generalFormatter.getCurrencyFormat(getColumnHelper.getIncomeGrossYearDouble()));
     }
 }

@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import com.example.leand.bilanztracker.Activitys.ExpenseActivity;
 import com.example.leand.bilanztracker.Activitys.IncomeActivity;
 import com.example.leand.bilanztracker.Activitys.MainActivity;
 
@@ -167,14 +168,21 @@ public class DBAdapter {
     // insert rows
 
     /**
-     * Add a new profile
+     * Add a new profile with a name
      */
-    public long insertRowProfile() {
+    public void insertRowProfile(String profileName) {
         ContentValues initialValues = new ContentValues();
-        initialValues.put(KEY_PROFILE, "new Profile");
+        initialValues.put(KEY_PROFILE, profileName);
 
         // Insert it into the database.
-        return db.insert(TABLE_PROFILE, null, initialValues);
+        MainActivity.long_ProfileId = db.insert(TABLE_PROFILE, null, initialValues);
+    }
+
+    /**
+     * Add a new profile with default name
+     */
+    public void insertRowProfile() {
+        insertRowProfile("new Profile");
     }
 
     /**
@@ -190,7 +198,7 @@ public class DBAdapter {
         initialValues.put(KEY_EXPENSE_YEAR, expenseYear);
 
         // Insert it into the database.
-        db.insert(TABLE_EXPENSE, null, initialValues);
+        ExpenseActivity.long_ExpenseId = db.insert(TABLE_EXPENSE, null, initialValues);
     }
 
     /**
@@ -198,17 +206,16 @@ public class DBAdapter {
      *
      * @param incomeType      name of income in string
      * @param incomeYearGross income gross in year in double
-     * @param incomeYearNet   income net in year in double
      */
-    public void insertRowIncome(String incomeType, double incomeYearGross, double incomeYearNet) {
+    public void insertRowIncome(String incomeType, double incomeYearGross) {
         ContentValues initialValues = new ContentValues();
         initialValues.put(KEY_PROFILE_ID, MainActivity.long_ProfileId);
         initialValues.put(KEY_INCOME_TYPE, incomeType);
         initialValues.put(KEY_INCOME_YEAR_GROSS, incomeYearGross);
-        initialValues.put(KEY_INCOME_YEAR_NET, incomeYearNet);
+        initialValues.put(KEY_INCOME_YEAR_NET, incomeYearGross);
 
         // Insert it into the database.
-        IncomeActivity.long_IncomeId=db.insert(TABLE_INCOME, null, initialValues);
+        IncomeActivity.long_IncomeId = db.insert(TABLE_INCOME, null, initialValues);
     }
 
 
@@ -227,6 +234,8 @@ public class DBAdapter {
 
         // Insert it into the database.
         db.insert(TABLE_DEDUCTION, null, initialValues);
+
+        updateRowIncomeNet();
     }
 
     /**
@@ -308,6 +317,8 @@ public class DBAdapter {
 
         // Insert it into the database.
         db.update(TABLE_PROFILE, newValues, where, null);
+
+        MainActivity.string_actualProfile = "Actual Profile: " + profileTitle;
     }
 
 
@@ -316,9 +327,20 @@ public class DBAdapter {
      *
      * @param incomeType      name of income in string
      * @param incomeYearGross income gross in year in double
-     * @param incomeYearNet   income net in year in double
      */
-    public void updateRowIncome(String incomeType, double incomeYearGross, double incomeYearNet) {
+    public void updateRowIncome(String incomeType, double incomeYearGross) {
+        double totalDeduction = 0.00;
+
+        if (checkDeductionExists()) {
+            Cursor cursor = getAllRowsDeduction();
+            do {
+                totalDeduction += cursor.getDouble(cursor.getColumnIndexOrThrow(DBAdapter.KEY_PERCENTAGE));
+            } while (cursor.moveToNext());
+            cursor.close();
+        }
+
+        double incomeYearNet = incomeYearGross - (incomeYearGross * totalDeduction / 100);
+
         String where = KEY_PROFILE_ID + "=" + MainActivity.long_ProfileId + " AND " + KEY_ID + "=" + IncomeActivity.long_IncomeId;
 
         ContentValues newValues = new ContentValues();
@@ -331,30 +353,26 @@ public class DBAdapter {
     }
 
     /**
-     * update the income
-     *
-     * @param incomeYearNet income net in year in double
+     * update the income net
      */
-    public void updateRowIncomeNet(double incomeYearNet) {
-        String where = KEY_PROFILE_ID + "=" + MainActivity.long_ProfileId + " AND " + KEY_ID + "=" + IncomeActivity.long_IncomeId;
+    public void updateRowIncomeNet() {
+        Cursor cursor = MainActivity.myDbMain.getRowIncome();
+        String incomeTitle = cursor.getString(cursor.getColumnIndexOrThrow(DBAdapter.KEY_INCOME_TYPE));
+        Double incomeGross = cursor.getDouble(cursor.getColumnIndexOrThrow(DBAdapter.KEY_INCOME_YEAR_GROSS));
+        cursor.close();
 
-        ContentValues newValues = new ContentValues();
-        newValues.put(KEY_INCOME_YEAR_NET, incomeYearNet);
-
-        // Insert it into the database.
-        db.update(TABLE_INCOME, newValues, where, null);
+        updateRowIncome(incomeTitle, incomeGross);
     }
 
 
     /**
      * update the cost
      *
-     * @param costId      id of cost in long
      * @param expenseType name of cost in string
      * @param expenseYear cost in year in double
      */
-    public void updateRowExpense(long costId, String expenseType, double expenseYear) {
-        String where = KEY_ID + "=" + costId;
+    public void updateRowExpense(String expenseType, double expenseYear) {
+        String where = KEY_ID + "=" + ExpenseActivity.long_ExpenseId;
 
         ContentValues newValues = new ContentValues();
         newValues.put(KEY_EXPENSE_TYPE, expenseType);
@@ -380,6 +398,8 @@ public class DBAdapter {
 
         // Insert it into the database.
         db.update(TABLE_DEDUCTION, newValues, where, null);
+
+        updateRowIncomeNet();
     }
 
     /**
@@ -435,8 +455,9 @@ public class DBAdapter {
      */
     public Cursor getAllRowsIncome() {
         String where = KEY_PROFILE_ID + "=" + MainActivity.long_ProfileId;
+        String orderBy= KEY_INCOME_YEAR_GROSS + " DESC";
         Cursor c = db.query(true, TABLE_INCOME, ALL_KEYS_INCOME,
-                where, null, null, null, null, null);
+                where, null, null, null, orderBy, null);
         if (c != null) {
             c.moveToFirst();
         }
@@ -466,8 +487,9 @@ public class DBAdapter {
      */
     public Cursor getAllRowsExpense() {
         String where = KEY_PROFILE_ID + "=" + MainActivity.long_ProfileId;
+        String orderBy= KEY_EXPENSE_YEAR + " DESC";
         Cursor c = db.query(true, TABLE_EXPENSE, ALL_KEYS_EXPENSE,
-                where, null, null, null, null, null);
+                where, null, null, null, orderBy, null);
         if (c != null) {
             c.moveToFirst();
         }
@@ -480,8 +502,8 @@ public class DBAdapter {
      * @return Return cursor from a row in table expense with id.
      */
     public Cursor getRowExpense() {
-        String where = KEY_ID + "=" + IncomeActivity.long_IncomeId;
-        Cursor c = db.query(true, TABLE_EXPENSE, ALL_KEYS_INCOME,
+        String where = KEY_ID + "=" + ExpenseActivity.long_ExpenseId;
+        Cursor c = db.query(true, TABLE_EXPENSE, ALL_KEYS_EXPENSE,
                 where, null, null, null, null, null);
         if (c != null) {
             c.moveToFirst();
@@ -496,8 +518,9 @@ public class DBAdapter {
      */
     public Cursor getAllRowsDeduction() {
         String where = KEY_INCOME_ID + "=" + IncomeActivity.long_IncomeId;
+        String orderBy= KEY_PERCENTAGE + " DESC";
         Cursor c = db.query(true, TABLE_DEDUCTION, ALL_KEYS_DEDUCTION,
-                where, null, null, null, null, null);
+                where, null, null, null, orderBy, null);
         if (c != null) {
             c.moveToFirst();
         }

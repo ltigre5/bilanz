@@ -5,19 +5,22 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.leand.bilanztracker.DatabaseHelper.GeneralFormatter;
 import com.example.leand.bilanztracker.DatabaseHelper.GetColumnHelper;
 import com.example.leand.bilanztracker.R;
 
 public class OverviewActivity extends BaseActivity {
     private Toolbar toolbar;
 
-    EditText editText_OverviewActivity_Title;
-    TextView textView_OverviewActivity_SavedTitle, textView_OverviewActivity_GrossYear, textView_OverviewActivity_GrossMonth,
+    private EditText editText_OverviewActivity_Title;
+    private TextView textView_OverviewActivity_GrossYear, textView_OverviewActivity_GrossMonth,
             textView_OverviewActivity_NetYear, textView_OverviewActivity_NetMonth, textView_OverviewActivity_ExpensesYear, textView_OverviewActivity_ExpensesMonth,
             textView_OverviewActivity_BalanceYear, textView_OverviewActivity_BalanceMonth;
 
-    GetColumnHelper getColumnHelper;
+    private GetColumnHelper getColumnHelper;
+    private GeneralFormatter generalFormatter;
 
 
     // Declaration
@@ -35,10 +38,10 @@ public class OverviewActivity extends BaseActivity {
 
         //Initialize classes
         getColumnHelper = new GetColumnHelper(MainActivity.myDbMain.getRowProfile());
+        generalFormatter = new GeneralFormatter();
 
         //definition of Items in Activity
         editText_OverviewActivity_Title = findViewById(R.id.editText_OverviewActivity_Title);
-        textView_OverviewActivity_SavedTitle = findViewById(R.id.textView_OverviewActivity_SavedTitle);
         textView_OverviewActivity_GrossYear = findViewById(R.id.textView_OverviewActivity_GrossYear);
         textView_OverviewActivity_GrossMonth = findViewById(R.id.textView_OverviewActivity_GrossMonth);
         textView_OverviewActivity_NetYear = findViewById(R.id.textView_OverviewActivity_NetYear);
@@ -52,20 +55,17 @@ public class OverviewActivity extends BaseActivity {
     }
 
     public void onClickSaveProfileTitle(View view) {
-        MainActivity.myDbMain.updateProfileTitle(editText_OverviewActivity_Title.getText().toString());
-        displayItemsOnActivity();
+        if (editText_OverviewActivity_Title.getText().toString().equals("")){
+            Toast.makeText(this, "Enter A title",
+                    Toast.LENGTH_LONG).show();
+        } else {
+            MainActivity.myDbMain.updateProfileTitle(editText_OverviewActivity_Title.getText().toString());
+            displayItemsOnActivity();
+        }
     }
 
     // OnCreate
     //----------------------------------------------------------------------------------------------
-    // onClick Methods
-
-    // onClick Methods
-    // ---------------------------------------------------------------------------------------------
-    //
-
-    // List Methods
-    // ---------------------------------------------------------------------------------------------
     // Displaying Values
 
     //show Values on Activity
@@ -73,34 +73,17 @@ public class OverviewActivity extends BaseActivity {
         getColumnHelper.setCursor(MainActivity.myDbMain.getRowProfile());
         editText_OverviewActivity_Title.setText(getColumnHelper.getProfileTitle());
         editText_OverviewActivity_Title.setSelection(editText_OverviewActivity_Title.getText().length());
-        textView_OverviewActivity_SavedTitle.setText(getColumnHelper.getProfileTitle());
 
-        textView_OverviewActivity_GrossYear.setText(getColumnHelper.getCurrencyFormatWithCurrency(
-                        getColumnHelper.getTotalIncomeGrossYearDouble()));
+        textView_OverviewActivity_GrossYear.setText(generalFormatter.getCurrencyFormat(getColumnHelper.getTotalIncomeGrossYearDouble()));
+        textView_OverviewActivity_GrossMonth.setText(generalFormatter.getCurrencyFormatMonth(getColumnHelper.getTotalIncomeGrossYearDouble()));
+        textView_OverviewActivity_NetYear.setText(generalFormatter.getCurrencyFormat(getColumnHelper.getTotalIncomeNetYearDouble()));
+        textView_OverviewActivity_NetMonth.setText(generalFormatter.getCurrencyFormatMonth(getColumnHelper.getTotalIncomeNetYearDouble()));
+        textView_OverviewActivity_ExpensesYear.setText(generalFormatter.getCurrencyFormat(getColumnHelper.getTotalExpenseYearDouble()));
+        textView_OverviewActivity_ExpensesMonth.setText(generalFormatter.getCurrencyFormatMonth(getColumnHelper.getTotalExpenseYearDouble()));
+        textView_OverviewActivity_BalanceYear.setText(generalFormatter.getCurrencyFormat(getColumnHelper.getBalanceYearDouble()));
+        textView_OverviewActivity_BalanceMonth.setText(generalFormatter.getCurrencyFormatMonth(getColumnHelper.getBalanceYearDouble()));
 
-        textView_OverviewActivity_GrossMonth.setText(getColumnHelper.getCurrencyFormatWithCurrency(
-                        getColumnHelper.getMonthValueDouble(getColumnHelper.getTotalIncomeGrossYearDouble())));
-
-        textView_OverviewActivity_NetYear.setText(getColumnHelper.getCurrencyFormatWithCurrency(
-                getColumnHelper.getTotalIncomeNetYearDouble()));
-
-        textView_OverviewActivity_NetMonth.setText(getColumnHelper.getCurrencyFormatWithCurrency(
-                        getColumnHelper.getMonthValueDouble(getColumnHelper.getTotalIncomeNetYearDouble())));
-
-        textView_OverviewActivity_ExpensesYear.setText(getColumnHelper.getCurrencyFormatWithCurrency(
-                getColumnHelper.getTotalExpenseYearDouble()));
-
-        textView_OverviewActivity_ExpensesMonth.setText(getColumnHelper.getCurrencyFormatWithCurrency(
-                        getColumnHelper.getMonthValueDouble(getColumnHelper.getTotalExpenseYearDouble())));
-
-        textView_OverviewActivity_BalanceYear.setText(getColumnHelper.getCurrencyFormatWithCurrency(
-                getColumnHelper.getBalanceYearDouble()));
-
-        textView_OverviewActivity_BalanceMonth.setText(getColumnHelper.getCurrencyFormatWithCurrency(
-                        getColumnHelper.getMonthValueDouble(getColumnHelper.getBalanceYearDouble())));
-
-        toolbar.setSubtitle(MainActivity.string_actualProfile);
-
+        toolbar.setSubtitle(getColumnHelper.getProfileTitle());
     }
 
     // Displaying Values

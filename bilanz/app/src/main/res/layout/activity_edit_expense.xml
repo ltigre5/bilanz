@@ -17,7 +17,7 @@
         android:id="@+id/editText_EditExpenseActivity_Title"
         style="@style/general_Top_MatchParent"
         android:lines="1"
-        android:text="Title" />
+        android:hint="Title" />
 
     <!-- expense value -->
     <LinearLayout style="@style/general_Middle_MatchParent">
@@ -29,7 +29,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:inputType="numberDecimal"
-            android:text="value" />
+            android:hint="value" />
 
         <TextView
             android:id="@+id/textView_EditExpenseActivity_Currency"

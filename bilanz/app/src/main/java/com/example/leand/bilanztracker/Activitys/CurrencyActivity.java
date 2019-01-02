@@ -61,7 +61,7 @@ public class CurrencyActivity extends BaseActivity {
             } else {
                 MainActivity.myDbMain.insertCurrency(editText_CurrencyActivity_Currency.getText().toString().toUpperCase());
             }
-            textView_CurrencyActivity_oldCurrency.setText(getColumnHelper.getCurrency());
+            displayItemsOnActivity();
         }
     }
 
@@ -77,13 +77,10 @@ public class CurrencyActivity extends BaseActivity {
     public void displayItemsOnActivity() {
         toolbar.setSubtitle(MainActivity.string_actualProfile);
 
+        textView_CurrencyActivity_oldCurrency.setText(getColumnHelper.getCurrency());
     }
 
     // Displaying Values
-    //----------------------------------------------------------------------------------------------------------------------------------------------
-    // Menu
-
-
     //----------------------------------------------------------------------------------------------------------------------------------------------
     // End
 }

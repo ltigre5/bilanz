@@ -9,8 +9,7 @@
 
     <include
         android:id="@+id/toolbar_MainActivity"
-        layout="@layout/toolbar_main_activity">
-    </include>
+        layout="@layout/toolbar_main_activity"></include>
 
     <!-- expenses list -->
     <ListView
@@ -20,8 +19,8 @@
 
     <!-- bottom -->
     <LinearLayout
-        style="@style/general_Bottom_MatchParent"
-        android:orientation="horizontal">
+        style="@style/general_MatchParent"
+        android:orientation="vertical">
 
         <!-- total expenses -->
         <LinearLayout
@@ -31,46 +30,53 @@
             android:layout_weight="1"
             android:orientation="vertical">
 
-            <!-- expenses/month -->
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="total expenses/month: " />
-
-                <TextView
-                    android:id="@+id/textView_ExpenseActivity_TotalExpenseMonth"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="5'000 " />
-            </LinearLayout>
 
             <!-- expenses/year -->
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:orientation="horizontal">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="total expenses/year: " />
+                    android:text="total expenses/year: "
+                    android:textStyle="bold"/>
 
                 <TextView
                     android:id="@+id/textView_ExpenseActivity_TotalExpenseYear"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="60'000 " />
+                    android:text="60'000 "
+                    android:textStyle="bold"/>
+            </LinearLayout>
+
+            <!-- expenses/month -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="total expenses/month: "
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:id="@+id/textView_ExpenseActivity_TotalExpenseMonth"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="5'000 "
+                    android:textStyle="bold"/>
             </LinearLayout>
         </LinearLayout>
 
         <!-- add new expenses button -->
         <Button
-            style="@style/button_WrapContent"
+            style="@style/button_Bottom_MatchParent"
             android:onClick="onClickAddExpense"
             android:text="add new expense" />
     </LinearLayout>

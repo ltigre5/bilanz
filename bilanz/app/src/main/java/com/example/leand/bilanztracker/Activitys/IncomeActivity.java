@@ -10,6 +10,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.leand.bilanztracker.DatabaseHelper.DBAdapter;
+import com.example.leand.bilanztracker.DatabaseHelper.GeneralFormatter;
 import com.example.leand.bilanztracker.DatabaseHelper.GetColumnHelper;
 import com.example.leand.bilanztracker.ListViewHelper.ListViewAdapter;
 import com.example.leand.bilanztracker.R;
@@ -21,6 +22,7 @@ public class IncomeActivity extends BaseActivity {
 
     private Toolbar toolbar;
     private GetColumnHelper getColumnHelper;
+    private GeneralFormatter generalFormatter;
 
     public static long long_IncomeId;
     public static boolean boolean_NewIncome;
@@ -45,6 +47,7 @@ public class IncomeActivity extends BaseActivity {
 
         listViewAdapter = new ListViewAdapter(this);
         getColumnHelper= new GetColumnHelper();
+        generalFormatter=new GeneralFormatter();
 
         createIncomeListView();
 
@@ -102,14 +105,12 @@ public class IncomeActivity extends BaseActivity {
 
     //show Values on Activity
     public void displayItemsOnActivity() {
-        toolbar.setSubtitle(MainActivity.string_actualProfile);
+        toolbar.setSubtitle("Balance/month: "+ generalFormatter.getCurrencyFormatMonth(getColumnHelper.getBalanceYearDouble()));
 
         listView_IncomeActivity.setAdapter(listViewAdapter.getIncomeListViewAdapter());
-        textView_IncomeActivity_TotalIncomeGrossYear.setText(getColumnHelper.getCurrencyFormatWithCurrency(
-                getColumnHelper.getTotalIncomeGrossYearDouble()));
 
-        textView_IncomeActivity_TotalIncomeNetYear.setText(getColumnHelper.getCurrencyFormatWithCurrency(
-                getColumnHelper.getTotalIncomeNetYearDouble()));
+        textView_IncomeActivity_TotalIncomeGrossYear.setText(generalFormatter.getCurrencyFormat(getColumnHelper.getTotalIncomeGrossYearDouble()));
+        textView_IncomeActivity_TotalIncomeNetYear.setText(generalFormatter.getCurrencyFormat(getColumnHelper.getTotalIncomeNetYearDouble()));
     }
 
     // Displaying Values

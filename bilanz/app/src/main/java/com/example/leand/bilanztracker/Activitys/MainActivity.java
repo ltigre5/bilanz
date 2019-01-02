@@ -17,8 +17,10 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.example.leand.bilanztracker.DatabaseHelper.DBAdapter;
+import com.example.leand.bilanztracker.DatabaseHelper.GeneralFormatter;
 import com.example.leand.bilanztracker.DatabaseHelper.GetColumnHelper;
 import com.example.leand.bilanztracker.ListViewHelper.ListViewAdapter;
+import com.example.leand.bilanztracker.Profiles.Profile;
 import com.example.leand.bilanztracker.R;
 
 public class MainActivity extends BaseActivity {
@@ -30,6 +32,7 @@ public class MainActivity extends BaseActivity {
     private ListViewAdapter listViewAdapter;
     private GetColumnHelper getColumnHelper;
     private Toolbar toolbar;
+    private Profile profile;
 
     public static String string_actualProfile;
 
@@ -44,6 +47,7 @@ public class MainActivity extends BaseActivity {
 
         //Set Toolbar
         toolbar = findViewById(R.id.toolbar_MainActivity);
+        toolbar.setSubtitleTextAppearance(this, R.style.subtitle);
         setSupportActionBar(toolbar);
 
         //open Database
@@ -78,12 +82,16 @@ public class MainActivity extends BaseActivity {
                     case DialogInterface.BUTTON_POSITIVE:
 
                         //Yes button clicked, add new profile in database
-                        long_ProfileId = MainActivity.myDbMain.insertRowProfile();
+                        MainActivity.myDbMain.insertRowProfile();
                         displayItemsOnActivity();
 
                         break;
                     case DialogInterface.BUTTON_NEGATIVE:
-                        //No button clicked, do nothing
+
+                        //No button clicked, add a default profile
+                        profile=new Profile();
+                        profile.generalProfile();
+                        displayItemsOnActivity();
                         break;
                 }
             }
@@ -92,9 +100,7 @@ public class MainActivity extends BaseActivity {
         //set the message to show in the DialogWindow
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setMessage("Which Profile?").setPositiveButton("Empty Profile", dialogClickListener)
-                .setNegativeButton("Default Profile", dialogClickListener).show();
-
-
+                .setNegativeButton("General Profile", dialogClickListener).show();
     }
 
     // onClick Methods
@@ -163,7 +169,7 @@ public class MainActivity extends BaseActivity {
 
         getColumnHelper.setCursor(myDbMain.getRowProfile());
         if (myDbMain.checkProfileExists()) {
-            string_actualProfile = "Actual Profile: " + getColumnHelper.getProfileTitle();
+            string_actualProfile =getColumnHelper.getProfileTitle();
         } else {
             string_actualProfile = "";
         }

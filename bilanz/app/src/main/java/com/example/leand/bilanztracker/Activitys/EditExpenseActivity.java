@@ -1,36 +1,31 @@
 package com.example.leand.bilanztracker.Activitys;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.text.InputFilter;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
-import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.leand.bilanztracker.DatabaseHelper.GeneralFormatter;
 import com.example.leand.bilanztracker.DatabaseHelper.GetColumnHelper;
 import com.example.leand.bilanztracker.EditTextFilter.InputFilterDecimal;
-import com.example.leand.bilanztracker.ListViewHelper.ListViewAdapter;
 import com.example.leand.bilanztracker.R;
 
-public class EditExpenseActivity extends BaseActivity implements AdapterView.OnItemSelectedListener{
+public class EditExpenseActivity extends BaseActivity implements AdapterView.OnItemSelectedListener {
     private EditText editText_EditExpenseActivity_Title, editText_EditExpenseActivity_Value, editText_EditExpenseActivity_RepeatedBy;
-    private TextView textView_EditIncomeActivity_IncomeGrossSaved;
+    private TextView textView_EditExpenseActivity_ExpenseDay, textView_EditExpenseActivity_ExpenseWeek, textView_EditExpenseActivity_ExpenseMonth,
+            textView_EditExpenseActivity_ExpenseYear;
     private Spinner spinner_EditExpenseActivity_Every;
 
     private Toolbar toolbar;
     private GetColumnHelper getColumnHelper;
+    private GeneralFormatter generalFormatter;
 
     private String string_Every;
     private String SPINNER_YEAR, SPINNER_MONTH, SPINNER_WEEK, SPINNER_DAY;
@@ -54,8 +49,13 @@ public class EditExpenseActivity extends BaseActivity implements AdapterView.OnI
         editText_EditExpenseActivity_Value.setFilters(new InputFilter[]{new InputFilterDecimal(14, 2)});
         editText_EditExpenseActivity_RepeatedBy = findViewById(R.id.editText_EditExpenseActivity_RepeatedBy);
         spinner_EditExpenseActivity_Every = findViewById(R.id.spinner_EditExpenseActivity_Every);
+        textView_EditExpenseActivity_ExpenseDay = findViewById(R.id.textView_EditExpenseActivity_ExpenseDay);
+        textView_EditExpenseActivity_ExpenseWeek = findViewById(R.id.textView_EditExpenseActivity_ExpenseWeek);
+        textView_EditExpenseActivity_ExpenseMonth = findViewById(R.id.textView_EditExpenseActivity_ExpenseMonth);
+        textView_EditExpenseActivity_ExpenseYear = findViewById(R.id.textView_EditExpenseActivity_ExpenseYear);
 
         getColumnHelper = new GetColumnHelper();
+        generalFormatter = new GeneralFormatter();
 
         SPINNER_YEAR = getResources().getString(R.string.every_year);
         SPINNER_MONTH = getResources().getString(R.string.every_month);
@@ -72,17 +72,58 @@ public class EditExpenseActivity extends BaseActivity implements AdapterView.OnI
     // onClick Methods
 
     public void onClickDeleteExpense(View view) {
+        if (!ExpenseActivity.boolean_NewExpense) {
+            MainActivity.myDbMain.deleteExpense(ExpenseActivity.long_ExpenseId);
+
+            Intent intent = new Intent(this, ExpenseActivity.class);
+            startActivity(intent);
+        }
     }
 
     public void onClickSaveExpense(View view) {
+        if (!editText_EditExpenseActivity_Title.getText().toString().equals("")
+                && !editText_EditExpenseActivity_Value.getText().toString().equals("")) {
+
+            String expenseTitle = editText_EditExpenseActivity_Title.getText().toString();
+            double expense = Double.parseDouble(editText_EditExpenseActivity_Value.getText().toString());
+            int repeatedBy = Integer.parseInt(editText_EditExpenseActivity_RepeatedBy.getText().toString());
+
+            if (string_Every.equals(SPINNER_MONTH)) {
+                expense = expense * (12 / repeatedBy);
+
+            } else if (string_Every.equals(SPINNER_WEEK)) {
+                expense = expense * (52 / repeatedBy);
+
+            } else if (string_Every.equals(SPINNER_DAY)) {
+                expense = expense * (365 / repeatedBy);
+            }
+
+            if (ExpenseActivity.boolean_NewExpense) {
+                MainActivity.myDbMain.insertRowExpense(expenseTitle, expense);
+                ExpenseActivity.boolean_NewExpense = false;
+            } else {
+                MainActivity.myDbMain.updateRowExpense(expenseTitle, expense);
+            }
+
+            displayItemsOnActivity();
+        } else {
+            Toast.makeText(this, "Enter A title and value",
+                    Toast.LENGTH_LONG).show();
+        }
     }
 
     // onClick Methods
     // ---------------------------------------------------------------------------------------------
-    //
+    // Lifecycle
 
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(this, ExpenseActivity.class);
+        startActivity(intent);
+        finish();
+    }
 
-    // calculate net
+    // Lifecycle
     // ---------------------------------------------------------------------------------------------
     // Spinner Methods
 
@@ -134,17 +175,22 @@ public class EditExpenseActivity extends BaseActivity implements AdapterView.OnI
 
     //show Values on Activity
     public void displayItemsOnActivity() {
-        toolbar.setSubtitle(MainActivity.string_actualProfile);
+        toolbar.setSubtitle("Balance/month: " + generalFormatter.getCurrencyFormatMonth(getColumnHelper.getBalanceYearDouble()));
 
+        if (!ExpenseActivity.boolean_NewExpense) {
+            editText_EditExpenseActivity_Title.setText(getColumnHelper.getExpenseTitle());
+            editText_EditExpenseActivity_Title.setSelection(editText_EditExpenseActivity_Title.getText().length());
+            editText_EditExpenseActivity_Value.setText(getColumnHelper.getExpenseYearDouble().toString());
+            spinner_EditExpenseActivity_Every.setSelection(((ArrayAdapter) spinner_EditExpenseActivity_Every.getAdapter()).getPosition(SPINNER_YEAR));
+
+            textView_EditExpenseActivity_ExpenseYear.setText(generalFormatter.getCurrencyFormat(getColumnHelper.getExpenseYearDouble()));
+            textView_EditExpenseActivity_ExpenseMonth.setText(generalFormatter.getCurrencyFormatMonth(getColumnHelper.getExpenseYearDouble()));
+            textView_EditExpenseActivity_ExpenseWeek.setText(generalFormatter.getCurrencyFormatWeek(getColumnHelper.getExpenseYearDouble()));
+            textView_EditExpenseActivity_ExpenseDay.setText(generalFormatter.getCurrencyFormatDay(getColumnHelper.getExpenseYearDouble()));
+        }
     }
 
     // Displaying Values
-    //----------------------------------------------------------------------------------------------------------------------------------------------
-    // End
-
-
-
-    // Menu
     //----------------------------------------------------------------------------------------------------------------------------------------------
     // End
 }

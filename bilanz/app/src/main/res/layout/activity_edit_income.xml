@@ -74,7 +74,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="saved income gross/year: " />
+            android:text="income gross/year: " />
 
         <TextView
             android:id="@+id/textView_EditIncomeActivity_IncomeGrossSaved"

@@ -29,24 +29,6 @@
             android:text="save" />
     </LinearLayout>
 
-    <!-- profile title -->
-    <LinearLayout
-        style="@style/general_Middle_MatchParent"
-        android:orientation="horizontal">
-
-        <TextView
-            style="@style/general_WrapContent"
-            android:text="Saved Profile Title: "
-            android:textStyle="bold"/>
-
-        <TextView
-            android:id="@+id/textView_OverviewActivity_SavedTitle"
-            style="@style/general_WrapContent"
-            android:onClick="onClickSaveProfileTitle"
-            android:text="Profile Title"
-            android:textStyle="bold"/>
-    </LinearLayout>
-
     <TableLayout
         style="@style/general_Middle_MatchParent"
         android:stretchColumns="0,1,2">

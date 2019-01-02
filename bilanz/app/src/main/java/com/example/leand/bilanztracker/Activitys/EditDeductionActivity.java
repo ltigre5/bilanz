@@ -7,6 +7,7 @@ import android.text.InputFilter;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.leand.bilanztracker.DatabaseHelper.GetColumnHelper;
 import com.example.leand.bilanztracker.EditTextFilter.InputFilterDecimal;
@@ -75,6 +76,9 @@ public class EditDeductionActivity extends BaseActivity {
             Intent intent = new Intent(this, EditIncomeActivity.class);
             startActivity(intent);
             finish();
+        } else {
+                Toast.makeText(this, "Enter A title and value",
+                        Toast.LENGTH_LONG).show();
         }
     }
 
@@ -88,7 +92,7 @@ public class EditDeductionActivity extends BaseActivity {
 
     //show Values on Activity
     public void displayItemsOnActivity() {
-        toolbar.setSubtitle(MainActivity.string_actualProfile);
+        toolbar.setSubtitle(getColumnHelper.getProfileTitle());
 
         if (!EditIncomeActivity.boolean_NewDeduction) {
             editText_EditDeductionActivity_Title.setText(getColumnHelper.getDeductionTitle());

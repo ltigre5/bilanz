@@ -16,7 +16,9 @@
     <!-- title profiles -->
     <TextView
         style="@style/general_Top_MatchParent"
-        android:text="Profiles" />
+        android:text="Profiles"
+        android:gravity="center"
+        android:textStyle="bold"/>
 
     <!-- profiles list -->
     <ListView

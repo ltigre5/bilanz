@@ -19,11 +19,68 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="expense: " />
+            android:text="expense/year: " />
 
         <!-- TextView to show income/year -->
         <TextView
-            android:id="@+id/textView_AdapterViewListExpense_Value"
+            android:id="@+id/textView_AdapterViewListExpense_YearValue"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:text="value" />
+    </LinearLayout>
+
+    <LinearLayout
+        style="@style/general_Middle_MatchParent"
+        android:orientation="horizontal">
+
+        <!-- TextView to show income/year -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="expense/month: " />
+
+        <!-- TextView to show income/year -->
+        <TextView
+            android:id="@+id/textView_AdapterViewListExpense_MonthValue"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:text="value" />
+    </LinearLayout>
+
+    <LinearLayout
+        style="@style/general_Middle_MatchParent"
+        android:orientation="horizontal">
+
+        <!-- TextView to show income/year -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="expense/week: " />
+
+        <!-- TextView to show income/year -->
+        <TextView
+            android:id="@+id/textView_AdapterViewListExpense_WeekValue"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:text="value" />
+    </LinearLayout>
+
+    <LinearLayout
+        style="@style/general_Middle_MatchParent"
+        android:orientation="horizontal">
+
+        <!-- TextView to show income/year -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="expense/day: " />
+
+        <!-- TextView to show income/year -->
+        <TextView
+            android:id="@+id/textView_AdapterViewListExpense_DayValue"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="2"

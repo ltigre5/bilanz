@@ -12,8 +12,10 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.leand.bilanztracker.DatabaseHelper.DBAdapter;
+import com.example.leand.bilanztracker.DatabaseHelper.GeneralFormatter;
 import com.example.leand.bilanztracker.DatabaseHelper.GetColumnHelper;
 import com.example.leand.bilanztracker.EditTextFilter.InputFilterDecimal;
 import com.example.leand.bilanztracker.ListViewHelper.ListViewAdapter;
@@ -28,6 +30,7 @@ public class EditIncomeActivity extends BaseActivity implements AdapterView.OnIt
 
     private Toolbar toolbar;
     private GetColumnHelper getColumnHelper;
+    private GeneralFormatter generalFormatter;
 
     private String string_Every;
     private String SPINNER_YEAR, SPINNER_MONTH, SPINNER_WEEK, SPINNER_DAY;
@@ -55,6 +58,7 @@ public class EditIncomeActivity extends BaseActivity implements AdapterView.OnIt
         listViewAdapter = new ListViewAdapter(this);
 
         getColumnHelper = new GetColumnHelper();
+        generalFormatter = new GeneralFormatter();
 
         editText_EditIncomeActivity_Title = findViewById(R.id.editText_EditIncomeActivity_Title);
         editText_EditIncomeActivity_IncomeGross = findViewById(R.id.editText_EditIncomeActivity_IncomeGross);
@@ -68,10 +72,6 @@ public class EditIncomeActivity extends BaseActivity implements AdapterView.OnIt
         SPINNER_MONTH = getResources().getString(R.string.every_month);
         SPINNER_WEEK = getResources().getString(R.string.every_week);
         SPINNER_DAY = getResources().getString(R.string.every_day);
-
-        if (!IncomeActivity.boolean_NewIncome){
-            MainActivity.myDbMain.updateRowIncomeNet(calculateIncomeNet(getColumnHelper.getIncomeGrossYearDouble()));
-        }
 
         createSpinnerEvery();
 
@@ -111,16 +111,17 @@ public class EditIncomeActivity extends BaseActivity implements AdapterView.OnIt
                 incomeGross = incomeGross * (365 / repeatedBy);
             }
 
-            double incomeNet=calculateIncomeNet(incomeGross);
-
             if (IncomeActivity.boolean_NewIncome) {
-                MainActivity.myDbMain.insertRowIncome(incomeTitle, incomeGross, incomeNet);
-                IncomeActivity.boolean_NewIncome=false;
+                MainActivity.myDbMain.insertRowIncome(incomeTitle, incomeGross);
+                IncomeActivity.boolean_NewIncome = false;
             } else {
-                MainActivity.myDbMain.updateRowIncome(incomeTitle, incomeGross, incomeNet);
+                MainActivity.myDbMain.updateRowIncome(incomeTitle, incomeGross);
             }
 
             displayItemsOnActivity();
+        } else {
+            Toast.makeText(this, "Enter A title and value",
+                    Toast.LENGTH_LONG).show();
         }
     }
 
@@ -132,15 +133,16 @@ public class EditIncomeActivity extends BaseActivity implements AdapterView.OnIt
 
     // onClick Methods
     // ---------------------------------------------------------------------------------------------
-    // calculate net
+    // Lifecycle
 
-    private double calculateIncomeNet(double incomeGross){
-        double totalDeduction=getColumnHelper.getTotalDeduction();
-
-        return incomeGross-(incomeGross*totalDeduction/100);
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(this, IncomeActivity.class);
+        startActivity(intent);
+        finish();
     }
 
-    // calculate net
+    // Lifecycle
     // ---------------------------------------------------------------------------------------------
     // Spinner Methods
 
@@ -211,21 +213,23 @@ public class EditIncomeActivity extends BaseActivity implements AdapterView.OnIt
 
     //show Values on Activity
     public void displayItemsOnActivity() {
-        toolbar.setSubtitle(MainActivity.string_actualProfile);
+        toolbar.setSubtitle("Balance/month: " + generalFormatter.getCurrencyFormatMonth(getColumnHelper.getBalanceYearDouble()));
         listView_SalaryActivity.setAdapter(listViewAdapter.getDeductionListViewAdapter());
 
         if (!IncomeActivity.boolean_NewIncome) {
             editText_EditIncomeActivity_Title.setText(getColumnHelper.getIncomeTitle());
             editText_EditIncomeActivity_Title.setSelection(editText_EditIncomeActivity_Title.getText().length());
             editText_EditIncomeActivity_IncomeGross.setText(getColumnHelper.getIncomeGrossYearDouble().toString());
-            textView_EditIncomeActivity_IncomeGrossSaved.setText(getColumnHelper.getCurrencyFormatWithCurrency(getColumnHelper.getIncomeGrossYearDouble()));
-            textView_EditIncomeActivity_IncomeNet.setText(getColumnHelper.getCurrencyFormatWithCurrency(getColumnHelper.getIncomeNetYearDouble()));
+            spinner_EditIncomeActivity_Every.setSelection(((ArrayAdapter) spinner_EditIncomeActivity_Every.getAdapter()).getPosition(SPINNER_YEAR));
+
+            textView_EditIncomeActivity_IncomeGrossSaved.setText(generalFormatter.getCurrencyFormat(getColumnHelper.getIncomeGrossYearDouble()));
+            textView_EditIncomeActivity_IncomeNet.setText(generalFormatter.getCurrencyFormat(getColumnHelper.getIncomeNetYearDouble()));
+
         } else {
             textView_EditIncomeActivity_IncomeGrossSaved.setText("");
             textView_EditIncomeActivity_IncomeNet.setText("");
         }
     }
-
 
 
     // Displaying Values

@@ -4,13 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activitys.IncomeActivity"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context=".Activitys.IncomeActivity">
 
     <include
         android:id="@+id/toolbar_MainActivity"
-        layout="@layout/toolbar_main_activity">
-    </include>
+        layout="@layout/toolbar_main_activity"></include>
 
     <!-- deductions list -->
     <ListView
@@ -19,24 +18,28 @@
         android:layout_weight="1" />
 
     <!-- salary net -->
-    <LinearLayout style="@style/general_Bottom_MatchParent">
+    <LinearLayout
+        style="@style/general_MatchParent"
+        android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_gravity="bottom"
-            android:layout_weight="1">
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                >
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="bottom"
-                    android:text="total gross/year: " />
+                    android:text="total gross/year: "
+                    android:textStyle="bold"/>
 
                 <TextView
                     android:id="@+id/textView_IncomeActivity_TotalIncomeGrossYear"
@@ -44,19 +47,22 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="bottom"
                     android:layout_weight="1"
-                    android:text="90'000" />
+                    android:text="90'000"
+                    android:textStyle="bold"/>
 
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_gravity="center">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="bottom"
-                    android:text="total net/year: " />
+                    android:text="total net/year: "
+                    android:textStyle="bold"/>
 
                 <TextView
                     android:id="@+id/textView_IncomeActivity_TotalIncomeNetYear"
@@ -64,13 +70,14 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="bottom"
                     android:layout_weight="1"
-                    android:text="90'000" />
+                    android:text="90'000"
+                    android:textStyle="bold"/>
             </LinearLayout>
         </LinearLayout>
 
         <Button
-            style="@style/button_WrapContent"
-            android:text="add new income"
-            android:onClick="onClickAddNewIncome" />
+            style="@style/button_Bottom_MatchParent"
+            android:onClick="onClickAddNewIncome"
+            android:text="add new income" />
     </LinearLayout>
 </LinearLayout>
