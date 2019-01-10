@@ -12,6 +12,7 @@ public class GeneralFormatter {
         getColumnHelper.getCurrency();
     }
 
+    //get the actual currency
     private String getCurrency() {
         return " " + getColumnHelper.getCurrency();
     }

@@ -8,7 +8,7 @@
     <TextView
         android:id="@+id/textView_AdapterViewListProfile_title"
         style="@style/general_Top_MatchParent"
-        android:text="Title"
+        android:text="@string/hint_title"
         android:textStyle="bold" />
 
     <LinearLayout
@@ -20,15 +20,15 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="income/year: " />
+            android:text="@string/list_NetMonth" />
 
         <!-- TextView to show income/year -->
         <TextView
             android:id="@+id/textView_AdapterViewListProfile_IncomeYear"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="2"
-            android:text="income/year" />
+            android:layout_weight="1"
+            android:text="income/month" />
 
     </LinearLayout>
 
@@ -41,15 +41,15 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="expense/year: " />
+            android:text="@string/list_ExpenseMonth" />
 
         <!-- TextView to show expense/year -->
         <TextView
             android:id="@+id/textView_AdapterViewListProfile_ExpenseYear"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="2"
-            android:text="expense/year" />
+            android:layout_weight="1"
+            android:text="expense/month" />
     </LinearLayout>
 
     <LinearLayout
@@ -61,14 +61,14 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="balance/year: " />
+            android:text="@string/list_BalanceMonth" />
 
         <!-- TextView to show balance/year -->
         <TextView
             android:id="@+id/textView_AdapterViewListProfile_BalanceYear"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="2"
-            android:text="balance/year" />
+            android:layout_weight="1"
+            android:text="balance/month" />
     </LinearLayout>
 </LinearLayout>

@@ -51,7 +51,7 @@ public class CurrencyActivity extends BaseActivity {
 
     public void onClick_SaveCurrency(View view) {
         if (editText_CurrencyActivity_Currency.length() < 3) {
-            Toast.makeText(CurrencyActivity.this, "Enter A 3-Letter Currency",
+            Toast.makeText(CurrencyActivity.this, getString(R.string.toast_EnterATitleAndValue),
                     Toast.LENGTH_LONG).show();
 
         } else {
@@ -66,10 +66,6 @@ public class CurrencyActivity extends BaseActivity {
     }
 
     // onClick Methods
-    // ---------------------------------------------------------------------------------------------
-    //
-
-    //
     // ---------------------------------------------------------------------------------------------
     // Displaying Values
 

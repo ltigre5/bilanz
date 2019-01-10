@@ -16,7 +16,8 @@ import com.example.leand.bilanztracker.ListViewHelper.ListViewAdapter;
 import com.example.leand.bilanztracker.R;
 
 public class ExpenseActivity extends BaseActivity {
-    private TextView textView_ExpenseActivity_TotalExpenseYear, textView_ExpenseActivity_TotalExpenseMonth;
+    private TextView textView_ExpenseActivity_TotalExpenseYear, textView_ExpenseActivity_TotalExpenseMonth,
+            textView_ExpenseActivity_ActualProfile;
 
     private ListView listView_ExpenseActivity;
     private ListViewAdapter listViewAdapter;
@@ -41,9 +42,10 @@ public class ExpenseActivity extends BaseActivity {
         toolbar = findViewById(R.id.toolbar_MainActivity);
         setSupportActionBar(toolbar);
 
-        //definition of Items in Activity
+        //Initialize Activity items
         textView_ExpenseActivity_TotalExpenseYear = findViewById(R.id.textView_ExpenseActivity_TotalExpenseYear);
         textView_ExpenseActivity_TotalExpenseMonth = findViewById(R.id.textView_ExpenseActivity_TotalExpenseMonth);
+        textView_ExpenseActivity_ActualProfile=findViewById(R.id.textView_ExpenseActivity_ActualProfile);
         listView_ExpenseActivity = findViewById(R.id.listView_ExpenseActivity);
 
         listViewAdapter = new ListViewAdapter(this);
@@ -64,17 +66,28 @@ public class ExpenseActivity extends BaseActivity {
         boolean_NewExpense = true;
         long_ExpenseId = 0;
         startActivity(intent);
+        finish();
     }
 
     // onClick Methods
     // ---------------------------------------------------------------------------------------------
+    // Lifecycle
+
+    @Override
+    public void onRestart() {
+        super.onRestart();
+        displayItemsOnActivity();
+    }
+
+    // Lifecycle
+    // ---------------------------------------------------------------------------------------------
     // List Methods
 
-    //Creates ArrayList of all profiles for ListView and adds an onClick Method which opens OverviewActivity
+    //Creates ArrayList of all profiles for ListView and adds an onClick Method which opens EditExpenseActivity
     public void createExpenseListView() {
         listView_ExpenseActivity.setAdapter(listViewAdapter.getExpenseListViewAdapter());
 
-        //by clicking of Item get Database-ID of Position and open EditItemActivity and send ID
+        //by clicking of Item get Database-ID of Position and open EditExpenseActivity
         listView_ExpenseActivity.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -86,27 +99,23 @@ public class ExpenseActivity extends BaseActivity {
 
                 Intent intent = new Intent(getApplicationContext(), EditExpenseActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
     }
 
     // List Methods
     // ---------------------------------------------------------------------------------------------
-    // LifeCycle Methods
-
-
-    //
-    // ---------------------------------------------------------------------------------------------
     // Displaying Values
 
     //show Values on Activity
     public void displayItemsOnActivity() {
-        toolbar.setSubtitle("Balance/month: "+ generalFormatter.getCurrencyFormatMonth(getColumnHelper.getBalanceYearDouble()));
+        toolbar.setSubtitle(getString(R.string.subtitle_BalanceMonth) + " " + generalFormatter.getCurrencyFormatMonth(getColumnHelper.getBalanceYearDouble()));
+        textView_ExpenseActivity_ActualProfile.setText(getColumnHelper.getProfileTitle());
 
         listView_ExpenseActivity.setAdapter(listViewAdapter.getExpenseListViewAdapter());
         textView_ExpenseActivity_TotalExpenseYear.setText(generalFormatter.getCurrencyFormat(getColumnHelper.getTotalExpenseYearDouble()));
         textView_ExpenseActivity_TotalExpenseMonth.setText(generalFormatter.getCurrencyFormatMonth(getColumnHelper.getTotalExpenseYearDouble()));
-
     }
 
     // Displaying Values

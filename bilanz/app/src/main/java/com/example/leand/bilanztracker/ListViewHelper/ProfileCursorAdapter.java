@@ -42,9 +42,9 @@ public class ProfileCursorAdapter extends CursorAdapter {
         MainActivity.long_ProfileId = getColumnHelper.getId();
 
         textView_AdapterViewListProfile_title.setText(getColumnHelper.getProfileTitle());
-        textView_AdapterViewListProfile_IncomeYear.setText(generalFormatter.getCurrencyFormat(getColumnHelper.getTotalIncomeNetYearDouble()));
-        textView_AdapterViewListProfile_ExpenseYear.setText(generalFormatter.getCurrencyFormat(getColumnHelper.getTotalExpenseYearDouble()));
-        textView_AdapterViewListProfile_BalanceYear.setText(generalFormatter.getCurrencyFormat(getColumnHelper.getBalanceYearDouble()));
+        textView_AdapterViewListProfile_IncomeYear.setText(generalFormatter.getCurrencyFormatMonth(getColumnHelper.getTotalIncomeNetYearDouble()));
+        textView_AdapterViewListProfile_ExpenseYear.setText(generalFormatter.getCurrencyFormatMonth(getColumnHelper.getTotalExpenseYearDouble()));
+        textView_AdapterViewListProfile_BalanceYear.setText(generalFormatter.getCurrencyFormatMonth(getColumnHelper.getBalanceYearDouble()));
 
         MainActivity.long_ProfileId = profileIdOld;
     }

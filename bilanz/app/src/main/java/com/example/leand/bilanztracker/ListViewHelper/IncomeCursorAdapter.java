@@ -17,12 +17,14 @@ public class IncomeCursorAdapter extends CursorAdapter {
     private LayoutInflater layoutInflater;
     private GetColumnHelper getColumnHelper;
     private GeneralFormatter generalFormatter;
+    private long incomeIdOld;
 
     public IncomeCursorAdapter(Context context, Cursor c, int flags) {
         super(context, c, flags);
         layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         getColumnHelper = new GetColumnHelper(c);
         generalFormatter=new GeneralFormatter();
+        incomeIdOld=IncomeActivity.long_IncomeId;
     }
 
     @Override
@@ -32,14 +34,16 @@ public class IncomeCursorAdapter extends CursorAdapter {
 
     @Override
     public void bindView(View view, Context context, Cursor cursor) {
-        IncomeActivity.long_IncomeId=getColumnHelper.getId();
-
         TextView textView_AdapterViewListIncome_title = view.findViewById(R.id.textView_AdapterViewListIncome_Title);
         TextView textView_AdapterViewListIncome_GrossValue = view.findViewById(R.id.textView_AdapterViewListIncome_GrossValue);
         TextView textView_AdapterViewListIncome_NetValue = view.findViewById(R.id.textView_AdapterViewListIncome_NetValue);
 
+        IncomeActivity.long_IncomeId=getColumnHelper.getId();
+
         textView_AdapterViewListIncome_title.setText(getColumnHelper.getIncomeTitle());
         textView_AdapterViewListIncome_NetValue.setText(generalFormatter.getCurrencyFormat(getColumnHelper.getIncomeNetYearDouble()));
         textView_AdapterViewListIncome_GrossValue.setText(generalFormatter.getCurrencyFormat(getColumnHelper.getIncomeGrossYearDouble()));
+
+        IncomeActivity.long_IncomeId=incomeIdOld;
     }
 }

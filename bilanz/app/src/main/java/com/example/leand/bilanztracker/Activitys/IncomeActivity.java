@@ -16,7 +16,9 @@ import com.example.leand.bilanztracker.ListViewHelper.ListViewAdapter;
 import com.example.leand.bilanztracker.R;
 
 public class IncomeActivity extends BaseActivity {
-    private TextView textView_IncomeActivity_TotalIncomeGrossYear,textView_IncomeActivity_TotalIncomeNetYear;
+    private TextView textView_IncomeActivity_TotalIncomeGrossYear, textView_IncomeActivity_TotalIncomeNetYear,
+            textView_IncomeActivity_ActualProfile;
+
     private ListView listView_IncomeActivity;
     private ListViewAdapter listViewAdapter;
 
@@ -40,14 +42,15 @@ public class IncomeActivity extends BaseActivity {
         toolbar = findViewById(R.id.toolbar_MainActivity);
         setSupportActionBar(toolbar);
 
-        //definition of Items in Activity
-        textView_IncomeActivity_TotalIncomeGrossYear=findViewById(R.id.textView_IncomeActivity_TotalIncomeGrossYear);
-        textView_IncomeActivity_TotalIncomeNetYear=findViewById(R.id.textView_IncomeActivity_TotalIncomeNetYear);
+        //Initialize Activity items
+        textView_IncomeActivity_TotalIncomeGrossYear = findViewById(R.id.textView_IncomeActivity_TotalIncomeGrossYear);
+        textView_IncomeActivity_TotalIncomeNetYear = findViewById(R.id.textView_IncomeActivity_TotalIncomeNetYear);
+        textView_IncomeActivity_ActualProfile=findViewById(R.id.textView_IncomeActivity_ActualProfile);
         listView_IncomeActivity = findViewById(R.id.listView_IncomeActivity);
 
         listViewAdapter = new ListViewAdapter(this);
-        getColumnHelper= new GetColumnHelper();
-        generalFormatter=new GeneralFormatter();
+        getColumnHelper = new GetColumnHelper();
+        generalFormatter = new GeneralFormatter();
 
         createIncomeListView();
 
@@ -60,52 +63,56 @@ public class IncomeActivity extends BaseActivity {
 
     public void onClickAddNewIncome(View view) {
         Intent intent = new Intent(this, EditIncomeActivity.class);
-        boolean_NewIncome=true;
-        long_IncomeId=0;
+        boolean_NewIncome = true;
+        long_IncomeId = 0;
         startActivity(intent);
+        finish();
     }
 
     // onClick Methods
     // ---------------------------------------------------------------------------------------------
+    // Lifecycle
+
+    @Override
+    public void onRestart() {
+        super.onRestart();
+        displayItemsOnActivity();
+    }
+
+    // Lifecycle
+    // ---------------------------------------------------------------------------------------------
     // List Methods
 
-    //Creates ArrayList of all profiles for ListView and adds an onClick Method which opens OverviewActivity
+    //Creates ArrayList of all profiles for ListView and adds an onClick Method which opens EditIncomeActivity
     public void createIncomeListView() {
         listView_IncomeActivity.setAdapter(listViewAdapter.getIncomeListViewAdapter());
 
-        //by clicking of Item get Database-ID of Position and open EditItemActivity and send ID
+        //by clicking of Item get Database-ID of Position and open EditIncomeActivity and send ID
         listView_IncomeActivity.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
                 //get ID of selected Item from Database
-                Cursor cursor_Income = (Cursor) parent.getItemAtPosition(position);
-                long_IncomeId = cursor_Income.getLong(cursor_Income.getColumnIndexOrThrow(DBAdapter.KEY_ID));
-                boolean_NewIncome=false;
+                Cursor cursor = (Cursor) parent.getItemAtPosition(position);
+                long_IncomeId = cursor.getLong(cursor.getColumnIndexOrThrow(DBAdapter.KEY_ID));
+                cursor.close();
+                boolean_NewIncome = false;
 
                 Intent intent = new Intent(getApplicationContext(), EditIncomeActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
     }
 
     // List Methods
     // ---------------------------------------------------------------------------------------------
-    // LifeCycle Methods
-
-    @Override
-    protected void onRestart() {
-        super.onRestart();
-        displayItemsOnActivity();
-    }
-
-    // LifeCycle Methods
-    // ---------------------------------------------------------------------------------------------
     // Displaying Values
 
     //show Values on Activity
     public void displayItemsOnActivity() {
-        toolbar.setSubtitle("Balance/month: "+ generalFormatter.getCurrencyFormatMonth(getColumnHelper.getBalanceYearDouble()));
+        toolbar.setSubtitle(getString(R.string.subtitle_BalanceMonth) +" "+ generalFormatter.getCurrencyFormatMonth(getColumnHelper.getBalanceYearDouble()));
+        textView_IncomeActivity_ActualProfile.setText(getColumnHelper.getProfileTitle());
 
         listView_IncomeActivity.setAdapter(listViewAdapter.getIncomeListViewAdapter());
 
@@ -114,12 +121,6 @@ public class IncomeActivity extends BaseActivity {
     }
 
     // Displaying Values
-    //----------------------------------------------------------------------------------------------------------------------------------------------
-    // Menu
-
-
-
-    // Menu
     //----------------------------------------------------------------------------------------------------------------------------------------------
     // End
 }

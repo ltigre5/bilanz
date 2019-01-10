@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Activitys.MainActivity">
+        <activity android:name=".Activitys.MainActivity"
+            android:launchMode="singleTask">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -18,26 +19,33 @@
         </activity>
         <activity
             android:name=".Activitys.OverviewActivity"
-            android:label="Overview" />
+            android:label="@string/Label_Overview"
+            android:launchMode="singleTask"/>
         <activity
             android:name=".Activitys.EditIncomeActivity"
-            android:label="Edit Income" />
+            android:label="@string/Label_EditIncome"
+            android:launchMode="singleTask"/>
         <activity
             android:name=".Activitys.ExpenseActivity"
-            android:label="Expenses" />
+            android:label="@string/Label_Expense"
+            android:launchMode="singleTask"/>
         <activity
             android:name=".Activitys.EditDeductionActivity"
-            android:label="Add/Edit Deduction" />
+            android:label="@string/Label_EditDeduction"
+            android:launchMode="singleTask"/>
         <activity
             android:name=".Activitys.EditExpenseActivity"
-            android:label="Add/Edit Expense" />
+            android:label="@string/Label_EditExpense"
+            android:launchMode="singleTask"/>
         <activity
             android:name=".Activitys.IncomeActivity"
-            android:label="Income" />
+            android:label="@string/Label_Income"
+            android:launchMode="singleTask"/>
         <activity android:name=".Activitys.InfoActivity"
-            android:label="Info"/>
+            android:label="@string/Label_Info"
+            android:launchMode="singleTask"/>
         <activity android:name=".Activitys.CurrencyActivity"
-            android:label="Change Currency"></activity>
+            android:label="@string/Label_ChangeCurrency"
+            android:launchMode="singleTask"></activity>
     </application>
-
 </manifest>

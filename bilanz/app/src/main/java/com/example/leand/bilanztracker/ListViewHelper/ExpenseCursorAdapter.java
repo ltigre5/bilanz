@@ -38,17 +38,12 @@ public class ExpenseCursorAdapter extends CursorAdapter {
         TextView textView_AdapterViewListDeduction_title = view.findViewById(R.id.textView_AdapterViewListExpense_Title);
         TextView textView_AdapterViewListDeduction_YearValue = view.findViewById(R.id.textView_AdapterViewListExpense_YearValue);
         TextView textView_AdapterViewListDeduction_MonthValue = view.findViewById(R.id.textView_AdapterViewListExpense_MonthValue);
-        TextView textView_AdapterViewListDeduction_WeekValue = view.findViewById(R.id.textView_AdapterViewListExpense_WeekValue);
-        TextView textView_AdapterViewListDeduction_DayValue = view.findViewById(R.id.textView_AdapterViewListExpense_DayValue);
 
         ExpenseActivity.long_ExpenseId=getColumnHelper.getId();
 
         textView_AdapterViewListDeduction_title.setText(getColumnHelper.getExpenseTitle());
         textView_AdapterViewListDeduction_YearValue.setText(generalFormatter.getCurrencyFormat(getColumnHelper.getExpenseYearDouble()));
         textView_AdapterViewListDeduction_MonthValue.setText(generalFormatter.getCurrencyFormatMonth(getColumnHelper.getExpenseYearDouble()));
-        textView_AdapterViewListDeduction_WeekValue.setText(generalFormatter.getCurrencyFormatWeek(getColumnHelper.getExpenseYearDouble()));
-        textView_AdapterViewListDeduction_DayValue.setText(generalFormatter.getCurrencyFormatDay(getColumnHelper.getExpenseYearDouble()));
-
 
         ExpenseActivity.long_ExpenseId=expenseIdOld;
     }

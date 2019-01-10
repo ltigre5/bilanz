@@ -8,17 +8,22 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.example.leand.bilanztracker.Activitys.EditIncomeActivity;
+import com.example.leand.bilanztracker.Activitys.ExpenseActivity;
 import com.example.leand.bilanztracker.DatabaseHelper.GetColumnHelper;
 import com.example.leand.bilanztracker.R;
 
 public class DeductionCursorAdapter extends CursorAdapter {
     private LayoutInflater layoutInflater;
     private GetColumnHelper getColumnHelper;
+    private long deductionIdOld;
+
 
     public DeductionCursorAdapter(Context context, Cursor c, int flags) {
         super(context, c, flags);
         layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         getColumnHelper = new GetColumnHelper(c);
+        deductionIdOld=EditIncomeActivity.long_DeductionId;
     }
 
     @Override
@@ -31,7 +36,11 @@ public class DeductionCursorAdapter extends CursorAdapter {
         TextView textView_AdapterViewListDeduction_title = view.findViewById(R.id.textView_AdapterViewListDeduction_Title);
         TextView textView_AdapterViewListDeduction_Value = view.findViewById(R.id.textView_AdapterViewListDeduction_Value);
 
+        EditIncomeActivity.long_DeductionId=getColumnHelper.getId();
+
         textView_AdapterViewListDeduction_title.setText(getColumnHelper.getDeductionTitle());
         textView_AdapterViewListDeduction_Value.setText(getColumnHelper.getDeductionPercentageStringPercent());
+
+        EditIncomeActivity.long_DeductionId=deductionIdOld;
     }
 }

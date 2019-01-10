@@ -21,20 +21,22 @@
             style="@style/general_WrapContent"
             android:layout_gravity="center"
             android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
-            android:hint="currency"
+            android:hint="@string/hint_3LetterCode"
             android:inputType="text"
             android:maxLength="3" />
 
         <!-- Old Currency -->
         <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            >
 
             <!-- Statement for old Currency -->
             <TextView
                 android:id="@+id/textView_CurrencyActivity_oldCurrencyStatement"
                 style="@style/general_WrapContent"
-                android:text="old currency: " />
+                android:text="@string/statement_OldCurrency" />
 
             <!-- Statement for old Currency -->
             <TextView
@@ -55,6 +57,6 @@
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
             android:onClick="onClick_SaveCurrency"
-            android:text="save currency" />
+            android:text="@string/button_Save" />
     </RelativeLayout>
 </RelativeLayout>

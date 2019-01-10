@@ -13,17 +13,12 @@ import java.text.DecimalFormat;
 public class GetColumnHelper {
     private Cursor cursor;
 
-    private String string_Currency = "";
-
-    public DecimalFormat currencyFormat = new DecimalFormat("#,###,###,###,###,###,##0.00");
-
-
     // Declaration
     //----------------------------------------------------------------------------------------------
     // Constructor
 
     /**
-     * Constructor needs cursor to get the right column to get data
+     * Constructor needs cursor to get the right column to get data, only needed to get the ID
      *
      * @param cursor cursor of columns to get the data
      */
@@ -46,7 +41,7 @@ public class GetColumnHelper {
     // setter
 
     /**
-     * Constructor needs cursor to get the right column to get data
+     * Constructor needs cursor to get the right column to get data, only needed to get the ID
      *
      * @param cursor cursor of columns to get the data
      */
@@ -66,7 +61,10 @@ public class GetColumnHelper {
      * @return title of profile in string
      */
     public String getProfileTitle() {
-        return cursor.getString(cursor.getColumnIndexOrThrow(DBAdapter.KEY_PROFILE));
+        Cursor cursor = MainActivity.myDbMain.getRowProfile();
+        String profileTitle=cursor.getString(cursor.getColumnIndexOrThrow(DBAdapter.KEY_PROFILE));
+        cursor.close();
+        return profileTitle;
     }
 
     // getter table profile
@@ -82,11 +80,9 @@ public class GetColumnHelper {
         if (MainActivity.myDbMain.checkCurrencyExists()) {
             Cursor cursor = MainActivity.myDbMain.getAllCurrency();
             String currency = cursor.getString(cursor.getColumnIndexOrThrow(DBAdapter.KEY_CURRENCY));
-            string_Currency = " " + currency;
             return currency;
 
         } else {
-            string_Currency = "";
             return "";
         }
     }
@@ -253,7 +249,10 @@ public class GetColumnHelper {
      * @return title of deduction in string
      */
     public String getDeductionTitle() {
-        return cursor.getString(cursor.getColumnIndexOrThrow(DBAdapter.KEY_DEDUCTION_TYPE));
+        Cursor cursor = MainActivity.myDbMain.getRowDeduction();
+        String deductionTitle = cursor.getString(cursor.getColumnIndexOrThrow(DBAdapter.KEY_DEDUCTION_TYPE));
+        cursor.close();
+        return deductionTitle;
     }
 
     /**
@@ -262,7 +261,10 @@ public class GetColumnHelper {
      * @return percentage of deduction in Double
      */
     public Double getDeductionPercentageDouble() {
-        return cursor.getDouble(cursor.getColumnIndexOrThrow(DBAdapter.KEY_PERCENTAGE));
+        Cursor cursor = MainActivity.myDbMain.getRowDeduction();
+        Double deductionPercentage = cursor.getDouble(cursor.getColumnIndexOrThrow(DBAdapter.KEY_PERCENTAGE));
+        cursor.close();
+        return deductionPercentage;
     }
 
     /**

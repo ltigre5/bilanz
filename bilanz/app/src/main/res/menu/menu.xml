@@ -4,49 +4,56 @@
 
     <item
         android:id="@+id/menu_Profiles"
-        android:title="profiles"
+        android:title="@string/Label_Profiles"
         app:showAsAction="never">
 
     </item>
 
     <item
         android:id="@+id/menu_Overview"
-        android:title="overview"
+        android:title="@string/Label_Overview"
         app:showAsAction="never">
 
     </item>
 
     <item
         android:id="@+id/menu_Income"
-        android:title="income"
+        android:title="@string/Label_Income"
         app:showAsAction="never">
 
     </item>
 
     <item
         android:id="@+id/menu_Expense"
-        android:title="expense"
+        android:title="@string/Label_Expense"
         app:showAsAction="never">
 
     </item>
 
     <item
         android:id="@+id/menu_ChangeCurrency"
-        android:title="change currency"
+        android:title="@string/Label_ChangeCurrency"
+        app:showAsAction="never">
+
+    </item>
+
+    <item
+        android:id="@+id/menu_DuplicateProfile"
+        android:title="@string/Label_DuplicateProfile"
         app:showAsAction="never">
 
     </item>
 
     <item
         android:id="@+id/menu_DeleteProfile"
-        android:title="delete profile"
+        android:title="@string/Label_DeleteProfile"
         app:showAsAction="never">
 
     </item>
 
     <item
         android:id="@+id/menu_Info"
-        android:title="info"
+        android:title="@string/Label_Info"
         app:showAsAction="never">
 
     </item>

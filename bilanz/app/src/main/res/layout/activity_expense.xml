@@ -11,10 +11,18 @@
         android:id="@+id/toolbar_MainActivity"
         layout="@layout/toolbar_main_activity"></include>
 
+    <!-- Actual Profile -->
+    <TextView
+        android:id="@+id/textView_ExpenseActivity_ActualProfile"
+        style="@style/general_Top_MatchParent"
+        android:text="actual profile"
+        android:textStyle="bold"
+        android:gravity="center"/>
+
     <!-- expenses list -->
     <ListView
         android:id="@+id/listView_ExpenseActivity"
-        style="@style/general_Top_MatchParent"
+        style="@style/general_Middle_MatchParent"
         android:layout_weight="1" />
 
     <!-- bottom -->
@@ -22,14 +30,19 @@
         style="@style/general_MatchParent"
         android:orientation="vertical">
 
+        <!-- add new expenses button -->
+        <Button
+            style="@style/button_Middle_MatchParent"
+            android:onClick="onClickAddExpense"
+            android:text="add new expense" />
+
         <!-- total expenses -->
         <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@style/general_Bottom_MatchParent"
+
             android:layout_gravity="center"
             android:layout_weight="1"
             android:orientation="vertical">
-
 
             <!-- expenses/year -->
             <LinearLayout
@@ -41,15 +54,15 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="total expenses/year: "
-                    android:textStyle="bold"/>
+                    android:text="@string/statement_TotalExpenseYear"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/textView_ExpenseActivity_TotalExpenseYear"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="60'000 "
-                    android:textStyle="bold"/>
+                    android:textStyle="bold" />
             </LinearLayout>
 
             <!-- expenses/month -->
@@ -62,22 +75,18 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="total expenses/month: "
-                    android:textStyle="bold"/>
+                    android:text="@string/statement_TotalExpenseMonth"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/textView_ExpenseActivity_TotalExpenseMonth"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="5'000 "
-                    android:textStyle="bold"/>
+                    android:textStyle="bold" />
             </LinearLayout>
         </LinearLayout>
 
-        <!-- add new expenses button -->
-        <Button
-            style="@style/button_Bottom_MatchParent"
-            android:onClick="onClickAddExpense"
-            android:text="add new expense" />
+
     </LinearLayout>
 </LinearLayout>

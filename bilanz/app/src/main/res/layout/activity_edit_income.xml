@@ -15,7 +15,7 @@
     <EditText
         android:id="@+id/editText_EditIncomeActivity_Title"
         style="@style/general_Top_MatchParent"
-        android:hint="Title"
+        android:hint="@string/hint_title"
         android:lines="1" />
 
     <!-- salary gross -->
@@ -24,11 +24,12 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="salary gross: " />
+            android:text="@string/statement_SalaryGross" />
 
         <EditText
             android:id="@+id/editText_EditIncomeActivity_IncomeGross"
-            style="@style/editText_Value" />
+            style="@style/editText_Value"
+            android:hint="@string/hint_value"/>
 
         <TextView
             android:id="@+id/textView_EditIncomeActivity_Currency"
@@ -43,17 +44,18 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="every: " />
+            android:text="@string/statement_Every" />
 
         <EditText
             android:id="@+id/editText_EditIncomeActivity_RepeatedBy"
+            android:inputType="number"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="1" />
 
         <Spinner
             android:id="@+id/spinner_EditIncomeActivity_Every"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:entries="@array/every_arrays">
@@ -63,41 +65,78 @@
         <Button
             style="@style/button_WrapContent"
             android:onClick="onClickSaveIncomeGrossYear"
-            android:text="save" />
+            android:text="@string/button_Save"  />
 
     </LinearLayout>
 
 
-    <!-- salary gross saved -->
+    <!-- salary gross year -->
     <LinearLayout style="@style/general_Middle_MatchParent">
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:text="income gross/year: " />
+            android:text="@string/statement_IncomeGrossYear" />
 
         <TextView
-            android:id="@+id/textView_EditIncomeActivity_IncomeGrossSaved"
-            android:layout_width="wrap_content"
+            android:id="@+id/textView_EditIncomeActivity_IncomeGrossYear"
+            android:layout_width="0dp"
+            android:layout_weight="1"
             android:layout_height="wrap_content"
             android:text="100'000" />
     </LinearLayout>
 
-    <!-- salary gross saved -->
+
+
+    <!-- salary net year -->
     <LinearLayout style="@style/general_Middle_MatchParent">
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
-            android:text="income net/year: " />
+            android:text="@string/statement_IncomeNetYear" />
 
         <TextView
-            android:id="@+id/textView_EditIncomeActivity_IncomeNet"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
+            android:id="@+id/textView_EditIncomeActivity_IncomeNetYear"
+            android:layout_width="0dp"
             android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="90'000" />
+    </LinearLayout>
+
+    <!-- salary gross month -->
+    <LinearLayout style="@style/general_Middle_MatchParent">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="@string/statement_IncomeGrossMonth" />
+
+        <TextView
+            android:id="@+id/textView_EditIncomeActivity_IncomeGrossMonth"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="100'000" />
+    </LinearLayout>
+
+    <!-- salary net month -->
+    <LinearLayout style="@style/general_Middle_MatchParent">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="@string/statement_IncomeNetMonth" />
+
+        <TextView
+            android:id="@+id/textView_EditIncomeActivity_IncomeNetMonth"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
             android:text="90'000" />
     </LinearLayout>
 
@@ -111,15 +150,16 @@
     <RelativeLayout style="@style/general_Bottom_MatchParent">
 
         <Button
+            android:id="@+id/button_EditIncomeActivity_DeleteIncome"
             style="@style/button_WrapContent"
             android:onClick="onClickADelete"
-            android:text="Delete"
+            android:text="@string/button_delete"
             android:layout_alignParentStart="true"/>
 
         <Button
             style="@style/button_WrapContent"
             android:onClick="onClickAddNewDeduction"
-            android:text="add new deduction"
+            android:text="@string/button_AddNewDeduction"
             android:layout_alignParentEnd="true"/>
     </RelativeLayout>
 </LinearLayout>

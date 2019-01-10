@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -17,7 +16,7 @@
         android:id="@+id/editText_EditExpenseActivity_Title"
         style="@style/general_Top_MatchParent"
         android:lines="1"
-        android:hint="Title" />
+        android:hint="@string/hint_title" />
 
     <!-- expense value -->
     <LinearLayout style="@style/general_Middle_MatchParent">
@@ -29,7 +28,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:inputType="numberDecimal"
-            android:hint="value" />
+            android:hint="@string/hint_value" />
 
         <TextView
             android:id="@+id/textView_EditExpenseActivity_Currency"
@@ -44,22 +43,29 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="every: " />
+            android:text="@string/statement_Every" />
 
         <EditText
             android:id="@+id/editText_EditExpenseActivity_RepeatedBy"
+            android:inputType="number"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="1" />
 
         <Spinner
             android:id="@+id/spinner_EditExpenseActivity_Every"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:entries="@array/every_arrays">
 
         </Spinner>
 
+        <!-- button save -->
+        <Button
+            style="@style/button_WrapContent"
+            android:onClick="onClickSaveExpense"
+            android:text="@string/button_Save" />
     </LinearLayout>
 
     <!-- show values -->
@@ -75,7 +81,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_column="0"
-                android:text="expense/day" />
+                android:text="@string/statement_ExpenseDay" />
 
             <TextView
                 android:id="@+id/textView_EditExpenseActivity_ExpenseDay"
@@ -95,7 +101,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_column="0"
-                android:text="expense/week" />
+                android:text="@string/statement_ExpenseWeek" />
 
             <TextView
                 android:id="@+id/textView_EditExpenseActivity_ExpenseWeek"
@@ -114,7 +120,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_column="0"
-                android:text="expense/month" />
+                android:text="@string/statement_ExpenseMonth" />
 
             <TextView
                 android:id="@+id/textView_EditExpenseActivity_ExpenseMonth"
@@ -133,7 +139,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_column="0"
-                android:text="expense/year" />
+                android:text="@string/statement_ExpenseYear" />
 
             <TextView
                 android:id="@+id/textView_EditExpenseActivity_ExpenseYear"
@@ -153,15 +159,10 @@
         <Button
             android:id="@+id/button_EditExpenseActivity_DeleteExpense"
             style="@style/button_WrapContent"
-            android:layout_alignParentStart="true"
+            android:layout_centerInParent="true"
             android:onClick="onClickDeleteExpense"
-            android:text="delete" />
+            android:text="@string/button_delete" />
 
-        <!-- button save -->
-        <Button
-            style="@style/button_WrapContent"
-            android:layout_alignParentEnd="true"
-            android:onClick="onClickSaveExpense"
-            android:text="save" />
+
     </RelativeLayout>
 </LinearLayout>

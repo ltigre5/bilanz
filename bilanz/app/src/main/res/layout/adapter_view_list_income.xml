@@ -8,7 +8,7 @@
     <TextView
         android:id="@+id/textView_AdapterViewListIncome_Title"
         style="@style/general_Top_MatchParent"
-        android:text="Title"
+        android:text="@string/hint_title"
         android:textStyle="bold" />
 
     <LinearLayout
@@ -19,7 +19,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Gross: " />
+            android:text="@string/list_Gross" />
 
         <!-- TextView to show income/year -->
         <TextView
@@ -37,7 +37,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Net: " />
+            android:text="@string/list_Net" />
 
         <!-- TextView to show income/year -->
         <TextView

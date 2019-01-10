@@ -1,5 +1,6 @@
 package com.example.leand.bilanztracker.Activitys;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -12,8 +13,6 @@ import com.example.leand.bilanztracker.DatabaseHelper.GetColumnHelper;
 import com.example.leand.bilanztracker.R;
 
 public class OverviewActivity extends BaseActivity {
-    private Toolbar toolbar;
-
     private EditText editText_OverviewActivity_Title;
     private TextView textView_OverviewActivity_GrossYear, textView_OverviewActivity_GrossMonth,
             textView_OverviewActivity_NetYear, textView_OverviewActivity_NetMonth, textView_OverviewActivity_ExpensesYear, textView_OverviewActivity_ExpensesMonth,
@@ -21,7 +20,7 @@ public class OverviewActivity extends BaseActivity {
 
     private GetColumnHelper getColumnHelper;
     private GeneralFormatter generalFormatter;
-
+    private Toolbar toolbar;
 
     // Declaration
     //----------------------------------------------------------------------------------------------
@@ -37,10 +36,10 @@ public class OverviewActivity extends BaseActivity {
         setSupportActionBar(toolbar);
 
         //Initialize classes
-        getColumnHelper = new GetColumnHelper(MainActivity.myDbMain.getRowProfile());
+        getColumnHelper = new GetColumnHelper();
         generalFormatter = new GeneralFormatter();
 
-        //definition of Items in Activity
+        //Initialize Activity items
         editText_OverviewActivity_Title = findViewById(R.id.editText_OverviewActivity_Title);
         textView_OverviewActivity_GrossYear = findViewById(R.id.textView_OverviewActivity_GrossYear);
         textView_OverviewActivity_GrossMonth = findViewById(R.id.textView_OverviewActivity_GrossMonth);
@@ -54,9 +53,13 @@ public class OverviewActivity extends BaseActivity {
         displayItemsOnActivity();
     }
 
+    // OnCreate
+    // ---------------------------------------------------------------------------------------------
+    // onClick Methods
+
     public void onClickSaveProfileTitle(View view) {
-        if (editText_OverviewActivity_Title.getText().toString().equals("")){
-            Toast.makeText(this, "Enter A title",
+        if (editText_OverviewActivity_Title.getText().toString().equals("")) {
+            Toast.makeText(this, getString(R.string.toast_EnterATitle),
                     Toast.LENGTH_LONG).show();
         } else {
             MainActivity.myDbMain.updateProfileTitle(editText_OverviewActivity_Title.getText().toString());
@@ -64,8 +67,18 @@ public class OverviewActivity extends BaseActivity {
         }
     }
 
-    // OnCreate
-    //----------------------------------------------------------------------------------------------
+    // onClick Methods
+    // ---------------------------------------------------------------------------------------------
+    // Lifecycle
+
+    @Override
+    public void onRestart() {
+        super.onRestart();
+        displayItemsOnActivity();
+    }
+
+    // Lifecycle
+    // ---------------------------------------------------------------------------------------------
     // Displaying Values
 
     //show Values on Activity
@@ -88,10 +101,5 @@ public class OverviewActivity extends BaseActivity {
 
     // Displaying Values
     //----------------------------------------------------------------------------------------------
-    // End
-
-
-    // Menu
-    //----------------------------------------------------------------------------------------------------------------------------------------------
     // End
 }

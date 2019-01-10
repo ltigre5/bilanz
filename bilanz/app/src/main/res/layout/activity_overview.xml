@@ -9,8 +9,7 @@
 
     <include
         android:id="@+id/toolbar_MainActivity"
-        layout="@layout/toolbar_main_activity">
-    </include>
+        layout="@layout/toolbar_main_activity"></include>
 
     <!-- profile title -->
     <LinearLayout
@@ -21,12 +20,12 @@
             android:id="@+id/editText_OverviewActivity_Title"
             style="@style/editText_Title"
             android:layout_height="wrap_content"
-            android:text="Title" />
+            android:hint="@string/hint_title" />
 
         <Button
             style="@style/button_WrapContent"
             android:onClick="onClickSaveProfileTitle"
-            android:text="save" />
+            android:text="@string/button_Save" />
     </LinearLayout>
 
     <TableLayout
@@ -46,13 +45,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_column="1"
-                android:text="month" />
+                android:text="@string/statement_Month" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_column="2"
-                android:text="year" />
+                android:text="@string/statement_Year" />
         </TableRow>
 
         <!-- second row, income -->
@@ -62,7 +61,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_column="0"
-                android:text="income" />
+                android:text="@string/statement_Income" />
         </TableRow>
 
         <!-- third row, gross -->
@@ -72,7 +71,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_column="0"
-                android:text="gross" />
+                android:text="@string/statement_Gross" />
 
             <!-- gross/month -->
             <TextView
@@ -98,7 +97,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_column="0"
-                android:text="net" />
+                android:text="@string/statement_Net" />
 
             <!-- net/month -->
             <TextView
@@ -130,7 +129,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_column="0"
-                android:text="expenses" />
+                android:text="@string/statement_Expenses" />
 
             <!-- expenses/month -->
             <TextView
@@ -162,7 +161,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_column="0"
-                android:text="balance" />
+                android:text="@string/statement_Balance" />
 
             <!-- balance/month -->
             <TextView

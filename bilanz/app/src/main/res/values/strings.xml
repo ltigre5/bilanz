@@ -14,5 +14,97 @@
         <item>@string/every_day</item>
     </string-array>
 
+    <!-- Toast -->
+    <string name="toast_EnterATitle">Enter A Title</string>
+    <string name="toast_EnterATitleAndValue">Enter A Value And Title</string>
+    <string name="toast_Enter3LetterCurrency">Enter A 3-Letter Currency</string>
+    <string name="toast_EnterNewProfile">Enter A new Profile</string>
+
+    <!-- Subtitle -->
+    <string name="subtitle_BalanceMonth">Balance/Month: </string>
+
+    <!-- Alert Dialog -->
+    <string name="dialog_QuestionDelete">Are you sure?</string>
+    <string name="dialog_Yes">YES</string>
+    <string name="dialog_No">NO</string>
+    <string name="dialog_QuestionProfile">Are you sure?</string>
+    <string name="dialog_GeneralProfile">General Profile</string>
+    <string name="dialog_EmptyProfile">Empty Profile</string>
+
+    <!-- Profile -->
+    <string name="profile_Salary">Salary</string>
+    <string name="profile_Rent">Rent</string>
+    <string name="profile_GeneralDeduction">General Deduction</string>
+    <string name="profile_Mobile">Mobile</string>
+    <string name="profile_InsuranceHealth">Insurance Health</string>
+    <string name="profile_Electricity">Electricity</string>
+    <string name="profile_Tax">Tax</string>
+    <string name="profile_Eat">Eat</string>
+    <string name="profile_Internet">Internet</string>
+    <string name="profile_Unforeseen">Unforeseen</string>
+    <string name="profile_Holidays">Holidays</string>
+    <string name="profile_HouseholdInsurance">Household Insurance</string>
+
+    <!-- List statement -->
+    <string name="list_Gross">Gross:\u0020</string>
+    <string name="list_Net">Net:\u0020</string>
+    <string name="list_ExpenseYear">Expense/Year:\u0020</string>
+    <string name="list_ExpenseMonth">Expense/Month:\u0020</string>
+    <string name="list_Percentage">Percentage:\u0020</string>
+    <string name="list_NetMonth">Net/Month:\u0020</string>
+    <string name="list_BalanceMonth">Balance/Month:\u0020</string>
+
+    <!-- Buttons -->
+    <string name="button_AddNewProfile">Add New Profile</string>
+    <string name="button_Save">Save</string>
+    <string name="button_AddNewIncome">Add New Income</string>
+    <string name="button_delete">Delete</string>
+    <string name="button_AddNewDeduction">Add New Deduction</string>
+    <string name="button_AddNewExpense">Add New Expense</string>
+
+    <!-- statement -->
+    <string name="statement_Profiles">Profiles</string>
+    <string name="statement_Income">Income</string>
+    <string name="statement_Year">Year</string>
+    <string name="statement_Month">Month</string>
+    <string name="statement_Gross">Gross</string>
+    <string name="statement_Net">Net</string>
+    <string name="statement_Expenses">Expenses</string>
+    <string name="statement_Balance">Balance</string>
+    <string name="statement_TotalGrossYear">Total Gross/Year:\u0020 </string>
+    <string name="statement_TotalNetYear">Total Net/Year:\u0020 </string>
+    <string name="statement_IncomeGrossYear">Income Gross/Year:\u0020 </string>
+    <string name="statement_IncomeNetYear">Income Net/Year:\u0020 </string>
+    <string name="statement_IncomeGrossMonth">Income Gross/Month:\u0020 </string>
+    <string name="statement_IncomeNetMonth">Income Net/Month:\u0020 </string>
+    <string name="statement_SalaryGross">Salary Gross:\u0020 </string>
+    <string name="statement_TotalExpenseYear">Total Expense/Year:\u0020 </string>
+    <string name="statement_TotalExpenseMonth">Total Expense/Month:\u0020 </string>
+    <string name="statement_OldCurrency">Old Currency:\u0020 </string>
+    <string name="statement_Every">Every:\u0020 </string>
+    <string name="statement_ExpenseYear">Expense/Year:\u0020 </string>
+    <string name="statement_ExpenseMonth">Expense/Month:\u0020 </string>
+    <string name="statement_ExpenseWeek">Expense/Week:\u0020 </string>
+    <string name="statement_ExpenseDay">Expense/Day:\u0020</string>
+
+    <!-- Hints -->
+    <string name="hint_title">Title</string>
+    <string name="hint_value">Value</string>
+    <string name="hint_description">Description</string>
+    <string name="hint_3LetterCode">3-Letter Code</string>
+    <string name="hint_Percentage">Percentage</string>
+
+    <!-- Label -->
+    <string name="Label_Profiles">Profiles</string>
+    <string name="Label_Overview">Overview</string>
+    <string name="Label_Income">Income</string>
+    <string name="Label_EditIncome">Edit Income</string>
+    <string name="Label_EditDeduction">Edit Deduction</string>
+    <string name="Label_Expense">Expense</string>
+    <string name="Label_EditExpense">Edit Expense</string>
+    <string name="Label_ChangeCurrency">Change Currency</string>
+    <string name="Label_DeleteProfile">Delete Profile</string>
+    <string name="Label_DuplicateProfile">Duplicate Profile</string>
+    <string name="Label_Info">Info</string>
 
 </resources>

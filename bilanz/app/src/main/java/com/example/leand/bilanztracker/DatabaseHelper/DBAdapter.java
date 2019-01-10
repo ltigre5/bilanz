@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import com.example.leand.bilanztracker.Activitys.EditIncomeActivity;
 import com.example.leand.bilanztracker.Activitys.ExpenseActivity;
 import com.example.leand.bilanztracker.Activitys.IncomeActivity;
 import com.example.leand.bilanztracker.Activitys.MainActivity;
@@ -15,7 +16,6 @@ public class DBAdapter {
     public final String OTHER_INCOME = "other income";
     public final String SEARCH_SALARY = "'salary'";
     public final String SEARCH_OTHER_INCOME = "'other income'";
-
 
     // Logcat tag
     private static final String LOG = "DBAdapter";
@@ -168,7 +168,9 @@ public class DBAdapter {
     // insert rows
 
     /**
-     * Add a new profile with a name
+     * Add a new profile with a name and actualizes MainActivity.long_ProfileId
+     *
+     * @param profileName name of the new Profile
      */
     public void insertRowProfile(String profileName) {
         ContentValues initialValues = new ContentValues();
@@ -179,14 +181,14 @@ public class DBAdapter {
     }
 
     /**
-     * Add a new profile with default name
+     * Add a new profile with default name and actualizes MainActivity.long_ProfileId
      */
     public void insertRowProfile() {
         insertRowProfile("new Profile");
     }
 
     /**
-     * Add a new expense
+     * Add a new expense and actualizes ExpenseActivity.long_ExpenseId
      *
      * @param expenseType name of expense in string
      * @param expenseYear expense in year in double
@@ -202,7 +204,25 @@ public class DBAdapter {
     }
 
     /**
-     * Add a new income
+     * Add a new income and actualizes IncomeActivity.long_IncomeId
+     *
+     * @param incomeType      name of income in string
+     * @param incomeYearGross income gross in year in double
+     * @param incomeYearNet income net in year in double
+     */
+    public void insertRowIncome(String incomeType, double incomeYearGross, double incomeYearNet) {
+        ContentValues initialValues = new ContentValues();
+        initialValues.put(KEY_PROFILE_ID, MainActivity.long_ProfileId);
+        initialValues.put(KEY_INCOME_TYPE, incomeType);
+        initialValues.put(KEY_INCOME_YEAR_GROSS, incomeYearGross);
+        initialValues.put(KEY_INCOME_YEAR_NET, incomeYearNet);
+
+        // Insert it into the database.
+        IncomeActivity.long_IncomeId = db.insert(TABLE_INCOME, null, initialValues);
+    }
+
+    /**
+     * Add a new income and actualizes IncomeActivity.long_IncomeId
      *
      * @param incomeType      name of income in string
      * @param incomeYearGross income gross in year in double
@@ -252,55 +272,6 @@ public class DBAdapter {
     }
 
     // insert rows
-    //----------------------------------------------------------------------------------------------
-    // delete rows
-
-    /**
-     * delete a Profile with profileID
-     *
-     * @param profileId ID of the Profile in long
-     */
-    public void deleteProfile(long profileId) {
-        String where = KEY_ID + "=" + profileId;
-        db.delete(TABLE_PROFILE, where, null);
-
-        where = KEY_PROFILE_ID + "=" + profileId;
-        db.delete(TABLE_EXPENSE, where, null);
-        db.delete(TABLE_INCOME, where, null);
-        db.delete(TABLE_DEDUCTION, where, null);
-    }
-
-    /**
-     * delete a cost with rowID of the cost
-     *
-     * @param expenseId ID of the cost in long
-     */
-    public void deleteExpense(long expenseId) {
-        String where = KEY_ID + "=" + expenseId;
-        db.delete(TABLE_EXPENSE, where, null);
-    }
-
-    /**
-     * delete a income with rowID of the income
-     *
-     * @param incomeId ID of the income in long
-     */
-    public void deleteIncome(long incomeId) {
-        String where = KEY_ID + "=" + incomeId;
-        db.delete(TABLE_INCOME, where, null);
-    }
-
-    /**
-     * delete a deduction with rowID of the deduction
-     *
-     * @param deductionId ID of the deduction in long
-     */
-    public void deleteDeduction(long deductionId) {
-        String where = KEY_ID + "=" + deductionId;
-        db.delete(TABLE_DEDUCTION, where, null);
-    }
-
-    // delete rows
     //----------------------------------------------------------------------------------------------
     // update row
 
@@ -417,6 +388,55 @@ public class DBAdapter {
 
     // update row
     //----------------------------------------------------------------------------------------------
+    // delete rows
+
+    /**
+     * delete a Profile with profileID
+     *
+     * @param profileId ID of the Profile in long
+     */
+    public void deleteProfile(long profileId) {
+        String where = KEY_ID + "=" + profileId;
+        db.delete(TABLE_PROFILE, where, null);
+
+        where = KEY_PROFILE_ID + "=" + profileId;
+        db.delete(TABLE_EXPENSE, where, null);
+        db.delete(TABLE_INCOME, where, null);
+        db.delete(TABLE_DEDUCTION, where, null);
+    }
+
+    /**
+     * delete a cost with rowID of the cost
+     *
+     * @param expenseId ID of the cost in long
+     */
+    public void deleteExpense(long expenseId) {
+        String where = KEY_ID + "=" + expenseId;
+        db.delete(TABLE_EXPENSE, where, null);
+    }
+
+    /**
+     * delete a income with rowID of the income
+     *
+     * @param incomeId ID of the income in long
+     */
+    public void deleteIncome(long incomeId) {
+        String where = KEY_ID + "=" + incomeId;
+        db.delete(TABLE_INCOME, where, null);
+    }
+
+    /**
+     * delete a deduction with rowID of the deduction
+     *
+     * @param deductionId ID of the deduction in long
+     */
+    public void deleteDeduction(long deductionId) {
+        String where = KEY_ID + "=" + deductionId;
+        db.delete(TABLE_DEDUCTION, where, null);
+    }
+
+    // delete rows
+    //----------------------------------------------------------------------------------------------
     // getRows
 
     /**
@@ -455,7 +475,7 @@ public class DBAdapter {
      */
     public Cursor getAllRowsIncome() {
         String where = KEY_PROFILE_ID + "=" + MainActivity.long_ProfileId;
-        String orderBy= KEY_INCOME_YEAR_GROSS + " DESC";
+        String orderBy = KEY_INCOME_YEAR_GROSS + " DESC";
         Cursor c = db.query(true, TABLE_INCOME, ALL_KEYS_INCOME,
                 where, null, null, null, orderBy, null);
         if (c != null) {
@@ -479,7 +499,6 @@ public class DBAdapter {
         return c;
     }
 
-
     /**
      * Return all data in the database from table expense.
      *
@@ -487,7 +506,7 @@ public class DBAdapter {
      */
     public Cursor getAllRowsExpense() {
         String where = KEY_PROFILE_ID + "=" + MainActivity.long_ProfileId;
-        String orderBy= KEY_EXPENSE_YEAR + " DESC";
+        String orderBy = KEY_EXPENSE_YEAR + " DESC";
         Cursor c = db.query(true, TABLE_EXPENSE, ALL_KEYS_EXPENSE,
                 where, null, null, null, orderBy, null);
         if (c != null) {
@@ -518,7 +537,7 @@ public class DBAdapter {
      */
     public Cursor getAllRowsDeduction() {
         String where = KEY_INCOME_ID + "=" + IncomeActivity.long_IncomeId;
-        String orderBy= KEY_PERCENTAGE + " DESC";
+        String orderBy = KEY_PERCENTAGE + " DESC";
         Cursor c = db.query(true, TABLE_DEDUCTION, ALL_KEYS_DEDUCTION,
                 where, null, null, null, orderBy, null);
         if (c != null) {
@@ -532,8 +551,8 @@ public class DBAdapter {
      *
      * @return Return cursor with all data in the database from specific deduction.
      */
-    public Cursor getRowDeduction(long id) {
-        String where = KEY_ID + "=" + id;
+    public Cursor getRowDeduction() {
+        String where = KEY_ID + "=" + EditIncomeActivity.long_DeductionId;
         Cursor c = db.query(true, TABLE_DEDUCTION, ALL_KEYS_DEDUCTION,
                 where, null, null, null, null, null);
         if (c != null) {
@@ -557,7 +576,7 @@ public class DBAdapter {
     }
 
     // getRows
-    //-----------------------------------------------------------------------------------------------------------------------------------------
+    //----------------------------------------------------------------------------------------------
     // check Methods
 
     /**
@@ -656,6 +675,6 @@ public class DBAdapter {
 
     // check Methods
     //-----------------------------------------------------------------------------------------------------------------------------------------
-
+    // End
 
 }

@@ -39,16 +39,9 @@ public class InfoActivity extends BaseActivity {
     //show Values on Activity
     public void displayItemsOnActivity() {
         toolbar.setSubtitle(MainActivity.string_actualProfile);
-
     }
 
     // Displaying Values
-    //----------------------------------------------------------------------------------------------------------------------------------------------
-    // Menu
-
-
-
-    // Menu
     //----------------------------------------------------------------------------------------------------------------------------------------------
     // End
 }
