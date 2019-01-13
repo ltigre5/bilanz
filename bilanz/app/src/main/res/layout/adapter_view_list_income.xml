@@ -17,16 +17,13 @@
 
         <!-- TextView to show income/year -->
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@style/list_weight1"
             android:text="@string/list_Gross" />
 
         <!-- TextView to show income/year -->
         <TextView
             android:id="@+id/textView_AdapterViewListIncome_GrossValue"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="2"
+            style="@style/list_weight1"
             android:text="value" />
     </LinearLayout>
     <LinearLayout
@@ -35,16 +32,13 @@
 
         <!-- TextView to show income/year -->
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@style/list_weight1"
             android:text="@string/list_Net" />
 
         <!-- TextView to show income/year -->
         <TextView
             android:id="@+id/textView_AdapterViewListIncome_NetValue"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="2"
+            style="@style/list_weight1"
             android:text="value" />
     </LinearLayout>
 </LinearLayout>

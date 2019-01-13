@@ -66,7 +66,6 @@ public class ExpenseActivity extends BaseActivity {
         boolean_NewExpense = true;
         long_ExpenseId = 0;
         startActivity(intent);
-        finish();
     }
 
     // onClick Methods
@@ -99,7 +98,6 @@ public class ExpenseActivity extends BaseActivity {
 
                 Intent intent = new Intent(getApplicationContext(), EditExpenseActivity.class);
                 startActivity(intent);
-                finish();
             }
         });
     }

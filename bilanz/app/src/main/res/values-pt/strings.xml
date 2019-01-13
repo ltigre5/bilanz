@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Balance Tracker</string>
+    <string name="every_year">Ano</string>
+    <string name="every_month">Meses</string>
+    <string name="every_week">Semanas</string>
+    <string name="every_day">Dias</string>
+    <string name="toast_EnterATitle">Entra um título</string>
+    <string name="toast_EnterATitleAndValue">Entra um título e valor</string>
+    <string name="toast_Enter3LetterCurrency">Digite um Código de 3-letras</string>
+    <string name="toast_EnterNewProfile">Cria um perfil</string>
+    <string name="dialog_QuestionDelete">Tem certeza?</string>
+    <string name="dialog_Yes">Sim</string>
+    <string name="dialog_No">Nao</string>
+    <string name="dialog_QuestionProfile">Tem certeza</string>
+    <string name="dialog_GeneralProfile">Perfil geral</string>
+    <string name="dialog_EmptyProfile">Perfil vazio</string>
+    <string name="subtitle_BalanceMonth">Balancete/Mes:</string>
+    <string name="profile_Salary">Salário</string>
+    <string name="profile_Rent">Aluguel</string>
+    <string name="profile_GeneralDeduction">Deduções gerais</string>
+    <string name="profile_Mobile">Móvel</string>
+    <string name="profile_InsuranceHealth">Seguro de saúde</string>
+    <string name="profile_Electricity">Eletricidade</string>
+    <string name="profile_Tax">Imposto</string>
+    <string name="profile_Eat">Comida</string>
+    <string name="profile_Internet">Internet</string>
+    <string name="profile_Unforeseen">Imprevisto</string>
+    <string name="profile_Holidays">Feriado</string>
+    <string name="profile_HouseholdInsurance">Seguro da casa</string>
+    <string name="list_Gross">Bruto:</string>
+    <string name="list_Net">Líquido:</string>
+    <string name="list_ExpenseYear">Despesa/Ano:</string>
+    <string name="list_ExpenseMonth">Despesa/Mes:</string>
+    <string name="list_Percentage">Por cento:</string>
+    <string name="list_NetMonth">Líquido/Mes:</string>
+    <string name="list_BalanceMonth">Balancete/Mes:</string>
+    <string name="button_AddNewProfile">Adicione um novo perfil</string>
+    <string name="button_Save">Salvar</string>
+    <string name="button_AddNewIncome">Adicione uma nova renda</string>
+    <string name="button_delete">Apagar</string>
+    <string name="button_AddNewDeduction">Adicione uma nova  dedução</string>
+    <string name="button_AddNewExpense">Adicione uma nova  despesa</string>
+    <string name="statement_Profiles">Perfil</string>
+    <string name="statement_Income">Renda</string>
+    <string name="statement_Year">Ano</string>
+    <string name="statement_Month">Mes</string>
+    <string name="statement_Gross">Bruto</string>
+    <string name="statement_Net">Líquido</string>
+    <string name="statement_Balance">Balancete</string>
+    <string name="statement_Expenses">Despesas</string>
+    <string name="statement_TotalGrossYear">"Total Bruto/Mes: "</string>
+    <string name="statement_TotalNetYear">"Total Líquido/Mes: "</string>
+    <string name="list_GrossMonth">"Bruto/Mes: "</string>
+    <string name="statement_IncomeGrossYear">"Bruto/Ano: "</string>
+    <string name="statement_IncomeGrossMonth">"Bruto/Mes: "</string>
+    <string name="statement_IncomeNetYear">"Líquidoo/Ano: "</string>
+    <string name="statement_IncomeNetMonth">"Líquidoo/Mes: "</string>
+    <string name="statement_IncomeGross">"Bruto: "</string>
+    <string name="statement_Every">"Todas: "</string>
+    <string name="statement_OldCurrency">"Moeda antiga: "</string>
+    <string name="statement_TotalExpenseYear">"Total Despesas/Ano: "</string>
+    <string name="statement_TotalExpenseMonth">"Total Despesas/Mes: "</string>
+    <string name="statement_ExpenseYear">"Despesas/Ano: "</string>
+    <string name="statement_ExpenseMonth">"Despesas/Mes: "</string>
+    <string name="statement_ExpenseWeek">"Despesas/Semana: "</string>
+    <string name="statement_ExpenseDay">"Despesas/Dia: "</string>
+    <string name="hint_title">Título</string>
+    <string name="hint_value">Valor</string>
+    <string name="hint_3LetterCode">Código de 3-letras</string>
+    <string name="hint_Percentage">Por cento</string>
+    <string name="Label_Profiles">Perfil</string>
+    <string name="Label_Overview">Visão global</string>
+    <string name="Label_Income">Renda</string>
+    <string name="Label_Expense">Despesas</string>
+    <string name="Label_EditDeduction">"Editar Deduçao "</string>
+    <string name="Label_EditIncome">Editar renda</string>
+    <string name="Label_EditExpense">Editar Despesa</string>
+    <string name="Label_ChangeCurrency">Alterar moeda</string>
+    <string name="Label_DeleteProfile">Deletar Perfil</string>
+    <string name="Label_DuplicateProfile">" Perfil duplicado"</string>
+    <string name="Label_Info">Informações</string>
+
+    <!-- info -->
+    <string name="info">
+        Em primeiro lugar, obrigado por usar o meu aplicativo.
+
+        \n\nCom este aplicativo, você tem uma visão geral de suas finanças. Você pode adicionar um novo ou alterar o perfil atual no menu principal.
+        Lá você pode escolher um perfil vazio ou padrão. O perfil padrão possui algumas entradas.
+
+        \n\nSe você quiser excluir seu perfil, clique em "Excluir perfil" no menu. Se você quiser duplicar seu perfil com todas as entradas,
+        clique em "Perfil Duplicado" no menu.
+
+        \n\nNa "Visão geral", você tem uma visão geral do perfil selecionado e pode alterar o nome do perfil.
+
+        \n\nSe quiser adicionar uma nova renda ou alterá-la, clique em "Renda" no menu.
+
+        \n\nSe quiser adicionar uma nova despesa ou alterá-la, clique em "Despesa" no menu.
+
+        \n\nSe quiser alterar a moeda, clique em "Alterar Moeda" no menu,
+        lá você tem que digitar o código de 3 letras da moeda.
+
+        \n\nEu gostaria que você avalie meu aplicativo ou, se quiser, gaste algum dinheiro para o criador.
+    </string>
+</resources>

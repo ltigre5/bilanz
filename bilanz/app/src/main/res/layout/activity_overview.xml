@@ -29,16 +29,16 @@
     </LinearLayout>
 
     <TableLayout
-        style="@style/general_Middle_MatchParent"
+        style="@style/general_Bottom_MatchParent"
         android:stretchColumns="0,1,2">
 
-        <!-- first row, empty -->
+        <!-- row empty -->
         <TableRow>
 
             <TextView />
         </TableRow>
 
-        <!-- first row, month and year -->
+        <!-- row month and year -->
         <TableRow>
 
             <TextView
@@ -54,7 +54,7 @@
                 android:text="@string/statement_Year" />
         </TableRow>
 
-        <!-- second row, income -->
+        <!-- row income -->
         <TableRow>
 
             <TextView
@@ -64,7 +64,7 @@
                 android:text="@string/statement_Income" />
         </TableRow>
 
-        <!-- third row, gross -->
+        <!-- row gross -->
         <TableRow>
 
             <TextView
@@ -90,7 +90,7 @@
                 android:text="gross/year" />
         </TableRow>
 
-        <!-- forth row, net -->
+        <!-- row net -->
         <TableRow>
 
             <TextView
@@ -116,13 +116,13 @@
                 android:text="net/year" />
         </TableRow>
 
-        <!-- fifth row, empty -->
+        <!-- row empty -->
         <TableRow>
 
             <TextView />
         </TableRow>
 
-        <!-- sixth row, expenses -->
+        <!-- row expenses -->
         <TableRow>
 
             <TextView
@@ -148,17 +148,17 @@
                 android:text="expenses/year" />
         </TableRow>
 
-        <!-- seventh row, empty -->
-        <TableRow>
+        <!-- deductions list -->
+        <ListView
+            android:id="@+id/listView_OverviewActivity"
+            style="@style/general_Middle_MatchParent"
+            android:layout_weight="1" />
 
-            <TextView />
-        </TableRow>
-
-        <!-- eight row, balance -->
+        <!-- row balance -->
         <TableRow>
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_column="0"
                 android:text="@string/statement_Balance" />
@@ -166,7 +166,7 @@
             <!-- balance/month -->
             <TextView
                 android:id="@+id/textView_OverviewActivity_BalanceMonth"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_column="1"
                 android:text="balance/month" />
@@ -174,10 +174,12 @@
             <!-- balance/year -->
             <TextView
                 android:id="@+id/textView_OverviewActivity_BalanceYear"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_column="2"
                 android:text="balance/year" />
         </TableRow>
+
+
     </TableLayout>
 </LinearLayout>

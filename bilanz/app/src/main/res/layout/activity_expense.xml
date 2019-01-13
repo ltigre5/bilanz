@@ -34,7 +34,7 @@
         <Button
             style="@style/button_Middle_MatchParent"
             android:onClick="onClickAddExpense"
-            android:text="add new expense" />
+            android:text="@string/button_AddNewExpense" />
 
         <!-- total expenses -->
         <LinearLayout
@@ -86,7 +86,5 @@
                     android:textStyle="bold" />
             </LinearLayout>
         </LinearLayout>
-
-
     </LinearLayout>
 </LinearLayout>

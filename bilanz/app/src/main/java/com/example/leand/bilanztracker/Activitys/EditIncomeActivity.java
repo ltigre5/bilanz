@@ -1,5 +1,7 @@
 package com.example.leand.bilanztracker.Activitys;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -41,6 +43,7 @@ public class EditIncomeActivity extends BaseActivity implements AdapterView.OnIt
     private String string_Every;
     private String SPINNER_YEAR, SPINNER_MONTH, SPINNER_WEEK, SPINNER_DAY;
     int repeatedBy = 1;
+    int counterSpinner = 0;
 
     public static long long_DeductionId;
     public static boolean boolean_NewDeduction;
@@ -76,7 +79,7 @@ public class EditIncomeActivity extends BaseActivity implements AdapterView.OnIt
         textView_EditIncomeActivity_IncomeNetYear = findViewById(R.id.textView_EditIncomeActivity_IncomeNetYear);
         textView_EditIncomeActivity_IncomeGrossMonth = findViewById(R.id.textView_EditIncomeActivity_IncomeGrossMonth);
         textView_EditIncomeActivity_IncomeNetMonth = findViewById(R.id.textView_EditIncomeActivity_IncomeNetMonth);
-        textView_EditIncomeActivity_Currency=findViewById(R.id.textView_EditIncomeActivity_Currency);
+        textView_EditIncomeActivity_Currency = findViewById(R.id.textView_EditIncomeActivity_Currency);
         button_EditIncomeActivity_DeleteIncome = findViewById(R.id.button_EditIncomeActivity_DeleteIncome);
         spinner_EditIncomeActivity_Every = findViewById(R.id.spinner_EditIncomeActivity_Every);
 
@@ -97,13 +100,32 @@ public class EditIncomeActivity extends BaseActivity implements AdapterView.OnIt
     // onClick Methods
 
     public void onClickADelete(View view) {
-        if (!IncomeActivity.boolean_NewIncome) {
-            MainActivity.myDbMain.deleteIncome(IncomeActivity.long_IncomeId);
+        DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                switch (which) {
+                    case DialogInterface.BUTTON_POSITIVE:
 
-            Intent intent = new Intent(this, IncomeActivity.class);
-            startActivity(intent);
-            finish();
-        }
+                        //Yes button clicked, delete all Data in Database
+                        if (!IncomeActivity.boolean_NewIncome) {
+                            MainActivity.myDbMain.deleteIncome(IncomeActivity.long_IncomeId);
+
+                            Intent intent = new Intent(getApplicationContext(), IncomeActivity.class);
+                            startActivity(intent);
+                            finish();
+                        }
+                        break;
+                    case DialogInterface.BUTTON_NEGATIVE:
+                        //No button clicked, do nothing
+                        break;
+                }
+            }
+        };
+
+        //set the message to show in the DialogWindow
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage(getString(R.string.dialog_QuestionDelete)).setPositiveButton(getString(R.string.dialog_Yes), dialogClickListener)
+                .setNegativeButton(getString(R.string.dialog_No), dialogClickListener).show();
     }
 
     public void onClickSaveIncomeGrossYear(View view) {
@@ -181,6 +203,11 @@ public class EditIncomeActivity extends BaseActivity implements AdapterView.OnIt
             editText_EditIncomeActivity_RepeatedBy.setText("1");
             editText_EditIncomeActivity_RepeatedBy.setFocusableInTouchMode(false);
 
+            if (counterSpinner > 0 && ExpenseActivity.boolean_NewExpense) {
+                editText_EditIncomeActivity_IncomeGross.requestFocus();
+                editText_EditIncomeActivity_IncomeGross.setSelection(editText_EditIncomeActivity_IncomeGross.getText().length());
+            }
+
         } else if (parent.getItemAtPosition(position).toString().equals(SPINNER_MONTH)) {
             editText_EditIncomeActivity_RepeatedBy.setFocusableInTouchMode(true);
             string_Every = SPINNER_MONTH;
@@ -193,9 +220,6 @@ public class EditIncomeActivity extends BaseActivity implements AdapterView.OnIt
             editText_EditIncomeActivity_RepeatedBy.setFocusableInTouchMode(true);
             string_Every = SPINNER_DAY;
         }
-
-        editText_EditIncomeActivity_IncomeGross.requestFocus();
-        editText_EditIncomeActivity_IncomeGross.setSelection(editText_EditIncomeActivity_IncomeGross.getText().length());
     }
 
     @Override

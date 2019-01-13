@@ -27,7 +27,7 @@
 
     <!-- salary net -->
     <LinearLayout
-        style="@style/general_MatchParent"
+        style="@style/general_Bottom_MatchParent"
         android:orientation="vertical">
 
         <Button
@@ -54,9 +54,8 @@
 
                 <TextView
                     android:id="@+id/textView_IncomeActivity_TotalIncomeGrossYear"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="bottom"
                     android:layout_weight="1"
                     android:text="90'000"
                     android:textStyle="bold" />
@@ -77,15 +76,12 @@
 
                 <TextView
                     android:id="@+id/textView_IncomeActivity_TotalIncomeNetYear"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="bottom"
                     android:layout_weight="1"
                     android:text="90'000"
                     android:textStyle="bold" />
             </LinearLayout>
         </LinearLayout>
-
-
     </LinearLayout>
 </LinearLayout>

@@ -18,15 +18,23 @@ public class ListViewAdapter {
     // GetAdapters
 
     /**
+     * Get the OverviewListViewAdapter
+     *
+     * @return OverviewListViewAdapter
+     */
+    public OverviewCursorAdapter getOverviewListViewAdapter() {
+        cursor = MainActivity.myDbMain.getAllRowsExpense();
+        return new OverviewCursorAdapter(context, cursor, 0);
+    }
+
+    /**
      * Get the ProfileListViewAdapter
      *
      * @return ProfileListViewAdapter
      */
-
     public ProfileCursorAdapter getProfileListViewAdapter() {
         cursor = MainActivity.myDbMain.getAllRowsProfile();
-        ProfileCursorAdapter profileCursorAdapter = new ProfileCursorAdapter(context, cursor, 0);
-        return profileCursorAdapter;
+        return new ProfileCursorAdapter(context, cursor, 0);
     }
 
     /**
@@ -34,11 +42,9 @@ public class ListViewAdapter {
      *
      * @return DeductionListViewAdapter
      */
-
     public DeductionCursorAdapter getDeductionListViewAdapter() {
         cursor = MainActivity.myDbMain.getAllRowsDeduction();
-        DeductionCursorAdapter deductionCursorAdapter = new DeductionCursorAdapter(context, cursor, 0);
-        return deductionCursorAdapter;
+        return new DeductionCursorAdapter(context, cursor, 0);
     }
 
     /**
@@ -46,11 +52,9 @@ public class ListViewAdapter {
      *
      * @return IncomeListViewAdapter
      */
-
     public IncomeCursorAdapter getIncomeListViewAdapter() {
         cursor = MainActivity.myDbMain.getAllRowsIncome();
-        IncomeCursorAdapter incomeCursorAdapter = new IncomeCursorAdapter(context, cursor, 0);
-        return incomeCursorAdapter;
+        return new IncomeCursorAdapter(context, cursor, 0);
     }
 
     /**
@@ -58,11 +62,9 @@ public class ListViewAdapter {
      *
      * @return ExpenseListViewAdapter
      */
-
     public ExpenseCursorAdapter getExpenseListViewAdapter() {
         cursor = MainActivity.myDbMain.getAllRowsExpense();
-        ExpenseCursorAdapter expenseCursorAdapter = new ExpenseCursorAdapter(context, cursor, 0);
-        return expenseCursorAdapter;
+        return new ExpenseCursorAdapter(context, cursor, 0);
     }
 
     // GetAdapters

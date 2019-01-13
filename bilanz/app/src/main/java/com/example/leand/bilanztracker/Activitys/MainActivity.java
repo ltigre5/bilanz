@@ -117,6 +117,15 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onRestart() {
         super.onRestart();
+
+        if (boolean_ProfileDeletedDuplicated ==true){
+            Cursor cursor = myDbMain.getAllRowsProfile();
+            getColumnHelper.setCursor(cursor);
+            long_ProfileId = getColumnHelper.getId();
+            cursor.close();
+            boolean_ProfileDeletedDuplicated =false;
+        }
+
         displayItemsOnActivity();
     }
 
@@ -175,14 +184,6 @@ public class MainActivity extends AppCompatActivity {
     public void displayItemsOnActivity() {
         listView_MainActivity.setAdapter(listViewAdapter.getProfileListViewAdapter());
 
-        if (boolean_ProfileDeletedDuplicated ==true){
-            Cursor cursor = myDbMain.getAllRowsProfile();
-            getColumnHelper.setCursor(cursor);
-            long_ProfileId = getColumnHelper.getId();
-            cursor.close();
-            boolean_ProfileDeletedDuplicated =false;
-        }
-
         if (myDbMain.checkProfileExists()) {
             string_actualProfile = getColumnHelper.getProfileTitle();
         } else {
@@ -192,7 +193,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     // Displaying Values
-    //----------------------------------------------------------------------------------------------------------------------------------------------
+    //----------------------------------------------------------------------------------------------
     // Menu
 
     //Create the Menubar
@@ -288,7 +289,12 @@ public class MainActivity extends AppCompatActivity {
                                 //Yes button clicked, delete all Data in Database
                                 if (MainActivity.myDbMain.checkProfileExists()) {
                                     MainActivity.myDbMain.deleteProfile(MainActivity.long_ProfileId);
-                                    boolean_ProfileDeletedDuplicated =true;
+                                    if (MainActivity.myDbMain.checkProfileExists()) {
+                                        Cursor cursor = myDbMain.getAllRowsProfile();
+                                        getColumnHelper.setCursor(cursor);
+                                        long_ProfileId = getColumnHelper.getId();
+                                        cursor.close();
+                                    }
                                     displayItemsOnActivity();
                                 }
                                 break;

@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Balance Tracker</string>
+    <string name="every_year">Jahr</string>
+    <string name="every_month">Monate</string>
+    <string name="every_week">Wochen</string>
+    <string name="every_day">Tage</string>
+    <string name="toast_EnterATitle">Gib einen Titel ein</string>
+    <string name="toast_EnterATitleAndValue">Gib einen Titel und Wert ein</string>
+    <string name="toast_Enter3LetterCurrency">Gib einen 3-Buchstaben Code ein</string>
+    <string name="toast_EnterNewProfile">Erstell ein Profil</string>
+    <string name="subtitle_BalanceMonth">Bilanz/Monat</string>
+    <string name="dialog_QuestionDelete">Sind sie sich sicher?</string>
+    <string name="dialog_Yes">Ja</string>
+    <string name="dialog_No">Nein</string>
+    <string name="dialog_QuestionProfile">Sind sie sich sicher</string>
+    <string name="dialog_GeneralProfile">Generelles Profil</string>
+    <string name="dialog_EmptyProfile">Leeres Profil</string>
+    <string name="profile_Salary">Salär</string>
+    <string name="profile_Rent">Miete</string>
+    <string name="profile_GeneralDeduction">Allgemeine Abzüge</string>
+    <string name="profile_Mobile">Mobile</string>
+    <string name="profile_InsuranceHealth">Krankenversicherung</string>
+    <string name="profile_Electricity">Elektrizität</string>
+    <string name="profile_Tax">Steuern</string>
+    <string name="profile_Eat">Essen</string>
+    <string name="profile_Internet">Internet</string>
+    <string name="profile_Unforeseen">Unvorhergesehenes</string>
+    <string name="profile_Holidays">Urlaub</string>
+    <string name="profile_HouseholdInsurance">Hausratsversicherung</string>
+    <string name="list_Gross">Brutto:</string>
+    <string name="list_Net">Netto:</string>
+    <string name="list_ExpenseYear">Ausgabe/Jahr:</string>
+    <string name="list_ExpenseMonth">Ausgabe/Monat:</string>
+    <string name="list_Percentage">Prozent:</string>
+    <string name="list_NetMonth">Netto/Monat:</string>
+    <string name="list_BalanceMonth">Bilanz/Monat:</string>
+    <string name="button_AddNewProfile">Neues Profil hinzufügen</string>
+    <string name="button_Save">Speichern</string>
+    <string name="button_AddNewIncome">Neues Einkommen hinzufügen</string>
+    <string name="button_delete">Löschen</string>
+    <string name="button_AddNewDeduction">Neuen Abzug hinzufügen</string>
+    <string name="button_AddNewExpense">Neue Ausgabe hinzufügen</string>
+    <string name="statement_Profiles">Profile</string>
+    <string name="statement_Income">Einkommen</string>
+    <string name="statement_Year">Jahr</string>
+    <string name="statement_Month">Monat</string>
+    <string name="statement_Gross">Brutto</string>
+    <string name="statement_Net">Netto</string>
+    <string name="statement_Expenses">Ausgaben</string>
+    <string name="statement_Balance">Bilanz</string>
+    <string name="statement_TotalGrossYear">"Total Brutto/Monat: "</string>
+    <string name="statement_TotalNetYear">"Total Netto/Monat: "</string>
+    <string name="statement_IncomeGrossYear">"Brutto/Jahr: "</string>
+    <string name="statement_IncomeNetYear">"Netto/Jahr: "</string>
+    <string name="statement_IncomeGrossMonth">"Brutto/Monat: "</string>
+    <string name="statement_IncomeNetMonth">"Netto/Monat: "</string>
+    <string name="list_GrossMonth">"Brutto/Monat: "</string>
+    <string name="statement_IncomeGross">"Brutto: "</string>
+    <string name="statement_TotalExpenseYear">"Total Ausgaben/Jahr: "</string>
+    <string name="statement_TotalExpenseMonth">"Total Ausgaben/Monat: "</string>
+    <string name="statement_OldCurrency">"Alte Währung: "</string>
+    <string name="statement_Every">"Alle: "</string>
+    <string name="statement_ExpenseYear">"Ausgabe/Jahr: "</string>
+    <string name="statement_ExpenseMonth">"Ausgabe/Monat: "</string>
+    <string name="statement_ExpenseWeek">"Ausgabe/Woche: "</string>
+    <string name="statement_ExpenseDay">"Ausgabe/Tag: "</string>
+    <string name="hint_title">Titel</string>
+    <string name="hint_value">Wert</string>
+    <string name="hint_3LetterCode">3-Buchstaben Code</string>
+    <string name="hint_Percentage">Prozent</string>
+    <string name="Label_Profiles">Profile</string>
+    <string name="Label_Overview">Übersicht</string>
+    <string name="Label_Income">Einkommen</string>
+    <string name="Label_EditIncome">Einkommen bearbeiten</string>
+    <string name="Label_EditDeduction">Abzug bearbeiten</string>
+    <string name="Label_Expense">Ausgaben</string>
+    <string name="Label_EditExpense">Ausgabe bearbeiten</string>
+    <string name="Label_ChangeCurrency">Währung ändern</string>
+    <string name="Label_DeleteProfile">Profil löschen</string>
+    <string name="Label_DuplicateProfile">Profil kopieren</string>
+    <string name="Label_Info">Info</string>
+
+    <!-- info -->
+    <string name="info">
+        Vielen Dank, dass Sie meine App verwenden.
+
+        \n\nMit dieser App haben Sie einen Überblick über Ihre Finanzen. Sie können im Hauptmenü ein neues hinzufügen oder das aktuelle Profil ändern.
+        Dort können Sie ein leeres oder ein Standardprofil auswählen. Das Standardprofil enthält einige Einträge.
+
+        \n\nWenn Sie Ihr Profil löschen möchten, klicken Sie im Menü auf "Profil löschen". Wenn Sie Ihr Profil mit allen Einträgen duplizieren möchten,
+        Klicken Sie im Menü auf "Profil duplizieren".
+
+        \n\nIn "Übersicht" haben Sie einen Überblick über das ausgewählte Profil und Sie können den Profilnamen ändern.
+
+        \n\nWenn Sie ein neues Einkommen hinzufügen oder ändern möchten, klicken Sie im Menü auf "Einkommen".
+
+        \n\nWenn Sie neue Ausgaben hinzufügen oder ändern möchten, klicken Sie im Menü auf "Kosten".
+
+        \n\nWenn Sie die Währung ändern möchten, klicken Sie im Menü auf "Währung ändern".
+        Dort müssen Sie den 3-Buchstaben-Code der Währung eingeben.
+
+        \n\nIch möchte, wenn Sie meine App bewerten oder wenn Sie möchten, dass Sie etwas Geld für den Ersteller ausgeben können.
+    </string>
+</resources>

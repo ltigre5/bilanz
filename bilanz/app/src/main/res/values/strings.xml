@@ -1,8 +1,8 @@
 <resources>
-    <string name="app_name">Bilanz Tracker</string>
+    <string name="app_name">Balance Tracker</string>
 
     <!-- Every expense spinner -->
-    <string name="every_year">Years</string>
+    <string name="every_year">Year</string>
     <string name="every_month">Months</string>
     <string name="every_week">Weeks</string>
     <string name="every_day">Days</string>
@@ -18,7 +18,7 @@
     <string name="toast_EnterATitle">Enter A Title</string>
     <string name="toast_EnterATitleAndValue">Enter A Value And Title</string>
     <string name="toast_Enter3LetterCurrency">Enter A 3-Letter Currency</string>
-    <string name="toast_EnterNewProfile">Enter A new Profile</string>
+    <string name="toast_EnterNewProfile">Create A Profile</string>
 
     <!-- Subtitle -->
     <string name="subtitle_BalanceMonth">Balance/Month: </string>
@@ -51,6 +51,7 @@
     <string name="list_ExpenseYear">Expense/Year:\u0020</string>
     <string name="list_ExpenseMonth">Expense/Month:\u0020</string>
     <string name="list_Percentage">Percentage:\u0020</string>
+    <string name="list_GrossMonth">Gross/Month:\u0020</string>
     <string name="list_NetMonth">Net/Month:\u0020</string>
     <string name="list_BalanceMonth">Balance/Month:\u0020</string>
 
@@ -73,11 +74,11 @@
     <string name="statement_Balance">Balance</string>
     <string name="statement_TotalGrossYear">Total Gross/Year:\u0020 </string>
     <string name="statement_TotalNetYear">Total Net/Year:\u0020 </string>
-    <string name="statement_IncomeGrossYear">Income Gross/Year:\u0020 </string>
-    <string name="statement_IncomeNetYear">Income Net/Year:\u0020 </string>
-    <string name="statement_IncomeGrossMonth">Income Gross/Month:\u0020 </string>
-    <string name="statement_IncomeNetMonth">Income Net/Month:\u0020 </string>
-    <string name="statement_SalaryGross">Salary Gross:\u0020 </string>
+    <string name="statement_IncomeGrossYear">"Gross/Year:\\u0020 "</string>
+    <string name="statement_IncomeNetYear">"Net/Year:\\u0020 "</string>
+    <string name="statement_IncomeGrossMonth">"Gross/Month:\\u0020 "</string>
+    <string name="statement_IncomeNetMonth">"Net/Month:\\u0020 "</string>
+    <string name="statement_IncomeGross">"Gross:\\u0020 "</string>
     <string name="statement_TotalExpenseYear">Total Expense/Year:\u0020 </string>
     <string name="statement_TotalExpenseMonth">Total Expense/Month:\u0020 </string>
     <string name="statement_OldCurrency">Old Currency:\u0020 </string>
@@ -90,7 +91,6 @@
     <!-- Hints -->
     <string name="hint_title">Title</string>
     <string name="hint_value">Value</string>
-    <string name="hint_description">Description</string>
     <string name="hint_3LetterCode">3-Letter Code</string>
     <string name="hint_Percentage">Percentage</string>
 
@@ -100,11 +100,33 @@
     <string name="Label_Income">Income</string>
     <string name="Label_EditIncome">Edit Income</string>
     <string name="Label_EditDeduction">Edit Deduction</string>
-    <string name="Label_Expense">Expense</string>
+    <string name="Label_Expense">Expenses</string>
     <string name="Label_EditExpense">Edit Expense</string>
     <string name="Label_ChangeCurrency">Change Currency</string>
     <string name="Label_DeleteProfile">Delete Profile</string>
     <string name="Label_DuplicateProfile">Duplicate Profile</string>
     <string name="Label_Info">Info</string>
+
+    <!-- info -->
+    <string name="info">
+        At First, thank you for using my App.
+
+        \n\nWith this app you have an overview of your finances. You can add a new or change the actual profile in the main menu.
+        There you can choose a empty or default profile. The default profile has some entries.
+
+        \n\nIf you want to delete your profile, click on "Delete Profile" in the menu. If you want to duplicate your profile with all entries,
+        click on "Duplicate Profile" in the menu.
+
+        \n\nIn "Overview", you have a overview of the selected profile and you can change the profile name.
+
+        \n\nIf you want to add a new income or change it, click on "Income" in the menu.
+
+        \n\nIf you want to add a new expense or change it, click on "Expense" in the menu.
+
+        \n\nIf you want to change the currency click on “Change Currency” in the menu,
+        there you have to enter the 3-Letter Code of the Currency.
+
+        \n\nI would like if you rate my app or if you want you can spend some money for the creator.
+    </string>
 
 </resources>

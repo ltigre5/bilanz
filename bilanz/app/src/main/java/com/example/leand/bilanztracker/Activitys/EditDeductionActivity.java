@@ -1,5 +1,7 @@
 package com.example.leand.bilanztracker.Activitys;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -53,13 +55,31 @@ public class EditDeductionActivity extends BaseActivity {
 
     //delete the deduction
     public void onClickDeleteDeduction(View view) {
-        if (!EditIncomeActivity.boolean_NewDeduction) {
-            MainActivity.myDbMain.deleteDeduction(EditIncomeActivity.long_DeductionId);
+        DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                switch (which) {
+                    case DialogInterface.BUTTON_POSITIVE:
 
-            Intent intent = new Intent(this, EditIncomeActivity.class);
-            startActivity(intent);
-            finish();
-        }
+                        if (!EditIncomeActivity.boolean_NewDeduction) {
+                            MainActivity.myDbMain.deleteDeduction(EditIncomeActivity.long_DeductionId);
+
+                            Intent intent = new Intent(getApplicationContext(), EditIncomeActivity.class);
+                            startActivity(intent);
+                            finish();
+                        }
+                        break;
+                    case DialogInterface.BUTTON_NEGATIVE:
+                        //No button clicked, do nothing
+                        break;
+                }
+            }
+        };
+
+        //set the message to show in the DialogWindow
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage(getString(R.string.dialog_QuestionDelete)).setPositiveButton(getString(R.string.dialog_Yes), dialogClickListener)
+                .setNegativeButton(getString(R.string.dialog_No), dialogClickListener).show();
     }
 
     //save the deduction

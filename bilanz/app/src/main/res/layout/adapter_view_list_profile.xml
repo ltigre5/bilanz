@@ -17,17 +17,13 @@
 
         <!-- TextView to show income/year -->
         <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/list_NetMonth" />
+            style="@style/list_weight1"
+            android:text="@string/list_GrossMonth" />
 
         <!-- TextView to show income/year -->
         <TextView
-            android:id="@+id/textView_AdapterViewListProfile_IncomeYear"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:id="@+id/textView_AdapterViewListProfile_IncomeMonthGross"
+            style="@style/list_weight1"
             android:text="income/month" />
 
     </LinearLayout>
@@ -38,17 +34,30 @@
 
         <!-- TextView to show income/year -->
         <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
+            style="@style/list_weight1"
+            android:text="@string/list_NetMonth" />
+
+        <!-- TextView to show income/year -->
+        <TextView
+            android:id="@+id/textView_AdapterViewListProfile_IncomeMonthNet"
+            style="@style/list_weight1"
+            android:text="income/month" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        style="@style/general_Middle_MatchParent"
+        android:orientation="horizontal">
+
+        <!-- TextView to show income/year -->
+        <TextView
+            style="@style/list_weight1"
             android:text="@string/list_ExpenseMonth" />
 
         <!-- TextView to show expense/year -->
         <TextView
             android:id="@+id/textView_AdapterViewListProfile_ExpenseYear"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
+            style="@style/list_weight1"
             android:text="expense/month" />
     </LinearLayout>
 
@@ -58,17 +67,13 @@
 
         <!-- TextView to show income/year -->
         <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
+            style="@style/list_weight1"
             android:text="@string/list_BalanceMonth" />
 
         <!-- TextView to show balance/year -->
         <TextView
             android:id="@+id/textView_AdapterViewListProfile_BalanceYear"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
+            style="@style/list_weight1"
             android:text="balance/month" />
     </LinearLayout>
 </LinearLayout>

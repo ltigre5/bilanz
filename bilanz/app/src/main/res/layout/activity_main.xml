@@ -16,7 +16,7 @@
     <!-- title profiles -->
     <TextView
         style="@style/general_Top_MatchParent"
-        android:text="Profiles"
+        android:text="@string/statement_Profiles"
         android:gravity="center"
         android:textStyle="bold"/>
 
@@ -29,7 +29,7 @@
     <!-- add new profile button -->
     <Button
         style="@style/button_Bottom_MatchParent"
-        android:text="Add new Profile"
+        android:text="@string/button_AddNewProfile"
         android:onClick="onClickAddNewProfile"/>
 
 </LinearLayout>

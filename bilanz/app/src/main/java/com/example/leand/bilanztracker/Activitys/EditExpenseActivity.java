@@ -1,5 +1,7 @@
 package com.example.leand.bilanztracker.Activitys;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -21,7 +23,7 @@ import com.example.leand.bilanztracker.R;
 public class EditExpenseActivity extends BaseActivity implements AdapterView.OnItemSelectedListener {
     private EditText editText_EditExpenseActivity_Title, editText_EditExpenseActivity_Value, editText_EditExpenseActivity_RepeatedBy;
     private TextView textView_EditExpenseActivity_ExpenseDay, textView_EditExpenseActivity_ExpenseWeek,
-            textView_EditExpenseActivity_ExpenseMonth, textView_EditExpenseActivity_ExpenseYear,textView_EditExpenseActivity_Currency;
+            textView_EditExpenseActivity_ExpenseMonth, textView_EditExpenseActivity_ExpenseYear, textView_EditExpenseActivity_Currency;
     private Button button_EditExpenseActivity_DeleteExpense;
     private Spinner spinner_EditExpenseActivity_Every;
 
@@ -31,6 +33,7 @@ public class EditExpenseActivity extends BaseActivity implements AdapterView.OnI
 
     private String string_Every;
     private String SPINNER_YEAR, SPINNER_MONTH, SPINNER_WEEK, SPINNER_DAY;
+    int counterSpinner = 0;
 
     // Declaration
     //----------------------------------------------------------------------------------------------
@@ -54,7 +57,7 @@ public class EditExpenseActivity extends BaseActivity implements AdapterView.OnI
         textView_EditExpenseActivity_ExpenseWeek = findViewById(R.id.textView_EditExpenseActivity_ExpenseWeek);
         textView_EditExpenseActivity_ExpenseMonth = findViewById(R.id.textView_EditExpenseActivity_ExpenseMonth);
         textView_EditExpenseActivity_ExpenseYear = findViewById(R.id.textView_EditExpenseActivity_ExpenseYear);
-        textView_EditExpenseActivity_Currency=findViewById(R.id.textView_EditExpenseActivity_Currency);
+        textView_EditExpenseActivity_Currency = findViewById(R.id.textView_EditExpenseActivity_Currency);
         button_EditExpenseActivity_DeleteExpense = findViewById(R.id.button_EditExpenseActivity_DeleteExpense);
         spinner_EditExpenseActivity_Every = findViewById(R.id.spinner_EditExpenseActivity_Every);
 
@@ -76,13 +79,29 @@ public class EditExpenseActivity extends BaseActivity implements AdapterView.OnI
     // onClick Methods
 
     public void onClickDeleteExpense(View view) {
-        if (!ExpenseActivity.boolean_NewExpense) {
-            MainActivity.myDbMain.deleteExpense(ExpenseActivity.long_ExpenseId);
+        DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                switch (which) {
+                    case DialogInterface.BUTTON_POSITIVE:
 
-            Intent intent = new Intent(this, ExpenseActivity.class);
-            startActivity(intent);
-            finish();
-        }
+                        if (!ExpenseActivity.boolean_NewExpense) {
+                            MainActivity.myDbMain.deleteExpense(ExpenseActivity.long_ExpenseId);
+
+                            finish();
+                        }
+                        break;
+                    case DialogInterface.BUTTON_NEGATIVE:
+                        //No button clicked, do nothing
+                        break;
+                }
+            }
+        };
+
+        //set the message to show in the DialogWindow
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage(getString(R.string.dialog_QuestionDelete)).setPositiveButton(getString(R.string.dialog_Yes), dialogClickListener)
+                .setNegativeButton(getString(R.string.dialog_No), dialogClickListener).show();
     }
 
     public void onClickSaveExpense(View view) {
@@ -109,8 +128,6 @@ public class EditExpenseActivity extends BaseActivity implements AdapterView.OnI
                 MainActivity.myDbMain.updateRowExpense(expenseTitle, expense);
             }
 
-            Intent intent = new Intent(this, ExpenseActivity.class);
-            startActivity(intent);
             finish();
 
         } else {
@@ -122,13 +139,6 @@ public class EditExpenseActivity extends BaseActivity implements AdapterView.OnI
     // onClick Methods
     // ---------------------------------------------------------------------------------------------
     // Lifecycle
-
-    @Override
-    public void onBackPressed() {
-        Intent intent = new Intent(this, ExpenseActivity.class);
-        startActivity(intent);
-        finish();
-    }
 
     // Lifecycle
     // ---------------------------------------------------------------------------------------------
@@ -152,6 +162,11 @@ public class EditExpenseActivity extends BaseActivity implements AdapterView.OnI
             editText_EditExpenseActivity_RepeatedBy.setText("1");
             editText_EditExpenseActivity_RepeatedBy.setFocusableInTouchMode(false);
 
+            if (counterSpinner > 0 && ExpenseActivity.boolean_NewExpense) {
+                editText_EditExpenseActivity_Value.requestFocus();
+                editText_EditExpenseActivity_Value.setSelection(editText_EditExpenseActivity_Value.getText().length());
+            }
+
         } else if (parent.getItemAtPosition(position).toString().equals(SPINNER_MONTH)) {
             editText_EditExpenseActivity_RepeatedBy.setFocusableInTouchMode(true);
             string_Every = SPINNER_MONTH;
@@ -165,9 +180,7 @@ public class EditExpenseActivity extends BaseActivity implements AdapterView.OnI
             string_Every = SPINNER_DAY;
         }
 
-        editText_EditExpenseActivity_Value.requestFocus();
-        editText_EditExpenseActivity_Value.setSelection(editText_EditExpenseActivity_Value.getText().length());
-
+        counterSpinner++;
     }
 
     @Override
@@ -180,7 +193,7 @@ public class EditExpenseActivity extends BaseActivity implements AdapterView.OnI
 
     //show Values on Activity
     public void displayItemsOnActivity() {
-        toolbar.setSubtitle(getString(R.string.subtitle_BalanceMonth) +" " + generalFormatter.getCurrencyFormatMonth(getColumnHelper.getBalanceYearDouble()));
+        toolbar.setSubtitle(getString(R.string.subtitle_BalanceMonth) + " " + generalFormatter.getCurrencyFormatMonth(getColumnHelper.getBalanceYearDouble()));
         textView_EditExpenseActivity_Currency.setText(getColumnHelper.getCurrency());
 
         if (!ExpenseActivity.boolean_NewExpense) {
@@ -199,7 +212,6 @@ public class EditExpenseActivity extends BaseActivity implements AdapterView.OnI
             textView_EditExpenseActivity_ExpenseMonth.setText("");
             textView_EditExpenseActivity_ExpenseWeek.setText("");
             textView_EditExpenseActivity_ExpenseDay.setText("");
-
         }
     }
 

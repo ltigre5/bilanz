@@ -37,12 +37,14 @@ public class ProfileCursorAdapter extends CursorAdapter {
         TextView textView_AdapterViewListProfile_title = view.findViewById(R.id.textView_AdapterViewListProfile_title);
         TextView textView_AdapterViewListProfile_BalanceYear = view.findViewById(R.id.textView_AdapterViewListProfile_BalanceYear);
         TextView textView_AdapterViewListProfile_ExpenseYear = view.findViewById(R.id.textView_AdapterViewListProfile_ExpenseYear);
-        TextView textView_AdapterViewListProfile_IncomeYear = view.findViewById(R.id.textView_AdapterViewListProfile_IncomeYear);
+        TextView textView_AdapterViewListProfile_IncomeMonthNet = view.findViewById(R.id.textView_AdapterViewListProfile_IncomeMonthNet);
+        TextView textView_AdapterViewListProfile_IncomeMonthGross = view.findViewById(R.id.textView_AdapterViewListProfile_IncomeMonthGross);
 
         MainActivity.long_ProfileId = getColumnHelper.getId();
 
         textView_AdapterViewListProfile_title.setText(getColumnHelper.getProfileTitle());
-        textView_AdapterViewListProfile_IncomeYear.setText(generalFormatter.getCurrencyFormatMonth(getColumnHelper.getTotalIncomeNetYearDouble()));
+        textView_AdapterViewListProfile_IncomeMonthGross.setText(generalFormatter.getCurrencyFormatMonth(getColumnHelper.getTotalIncomeGrossYearDouble()));
+        textView_AdapterViewListProfile_IncomeMonthNet.setText(generalFormatter.getCurrencyFormatMonth(getColumnHelper.getTotalIncomeNetYearDouble()));
         textView_AdapterViewListProfile_ExpenseYear.setText(generalFormatter.getCurrencyFormatMonth(getColumnHelper.getTotalExpenseYearDouble()));
         textView_AdapterViewListProfile_BalanceYear.setText(generalFormatter.getCurrencyFormatMonth(getColumnHelper.getBalanceYearDouble()));
 
