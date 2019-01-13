@@ -97,7 +97,7 @@
     <!-- Label -->
     <string name="Label_Profiles">Profiles</string>
     <string name="Label_Overview">Overview</string>
-    <string name="Label_Income">Income</string>
+    <string name="Label_Income">Incomes</string>
     <string name="Label_EditIncome">Edit Income</string>
     <string name="Label_EditDeduction">Edit Deduction</string>
     <string name="Label_Expense">Expenses</string>
@@ -111,7 +111,7 @@
     <string name="info">
         At First, thank you for using my App.
 
-        \n\nWith this app you have an overview of your finances. You can add a new or change the actual profile in the main menu.
+        \n\nWith this app you have an overview of your finances. You can add a new profile or choose which profile you want to change in the main menu.
         There you can choose a empty or default profile. The default profile has some entries.
 
         \n\nIf you want to delete your profile, click on "Delete Profile" in the menu. If you want to duplicate your profile with all entries,

@@ -85,11 +85,11 @@
     <string name="info">
         Vielen Dank, dass Sie meine App verwenden.
 
-        \n\nMit dieser App haben Sie einen Überblick über Ihre Finanzen. Sie können im Hauptmenü ein neues hinzufügen oder das aktuelle Profil ändern.
+        \n\nMit dieser App haben Sie einen Überblick über Ihre Finanzen. Sie können im Hauptmenü ein neues Profil hinzufügen oder auswählen welches sie ändern möchten.
         Dort können Sie ein leeres oder ein Standardprofil auswählen. Das Standardprofil enthält einige Einträge.
 
         \n\nWenn Sie Ihr Profil löschen möchten, klicken Sie im Menü auf "Profil löschen". Wenn Sie Ihr Profil mit allen Einträgen duplizieren möchten,
-        Klicken Sie im Menü auf "Profil duplizieren".
+        klicken Sie im Menü auf "Profil duplizieren".
 
         \n\nIn "Übersicht" haben Sie einen Überblick über das ausgewählte Profil und Sie können den Profilnamen ändern.
 
@@ -100,6 +100,6 @@
         \n\nWenn Sie die Währung ändern möchten, klicken Sie im Menü auf "Währung ändern".
         Dort müssen Sie den 3-Buchstaben-Code der Währung eingeben.
 
-        \n\nIch möchte, wenn Sie meine App bewerten oder wenn Sie möchten, dass Sie etwas Geld für den Ersteller ausgeben können.
+        \n\nIch würde mich freuen, wenn Sie meine App bewerten oder wenn Sie möchten, etwas Geld für den Entwickler spenden.
     </string>
 </resources>

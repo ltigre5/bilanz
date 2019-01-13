@@ -71,7 +71,7 @@
     <string name="hint_Percentage">Por cento</string>
     <string name="Label_Profiles">Perfil</string>
     <string name="Label_Overview">Visão global</string>
-    <string name="Label_Income">Renda</string>
+    <string name="Label_Income">Rendas</string>
     <string name="Label_Expense">Despesas</string>
     <string name="Label_EditDeduction">"Editar Deduçao "</string>
     <string name="Label_EditIncome">Editar renda</string>
@@ -85,7 +85,7 @@
     <string name="info">
         Em primeiro lugar, obrigado por usar o meu aplicativo.
 
-        \n\nCom este aplicativo, você tem uma visão geral de suas finanças. Você pode adicionar um novo ou alterar o perfil atual no menu principal.
+        \n\nCom este aplicativo, você tem uma visão geral de suas finanças. Você pode adicionar um novo perfil ou escolher o perfil que deseja alterar no menu principal.
         Lá você pode escolher um perfil vazio ou padrão. O perfil padrão possui algumas entradas.
 
         \n\nSe você quiser excluir seu perfil, clique em "Excluir perfil" no menu. Se você quiser duplicar seu perfil com todas as entradas,
